@@ -1,0 +1,38 @@
+/* Mobile Menu Animations */
+/* Custom animations for mobile menu fade-in effect */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Keyframe animation for smooth menu appearance */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hamburger Menu Transitions */
+/* Smooth transitions for hamburger menu lines transformation */
+.hamburger-line {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Additional mobile menu enhancements */
+.mobile-menu-container {
+  transition: max-height 0.3s ease-in-out;
+}
+
+/* Responsive animation adjustments */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .hamburger-line,
+  .mobile-menu-container {
+    animation: none;
+    transition: none;
+  }
+}
