@@ -63,9 +63,6 @@ mainkeun-landing-page/
 │   ├── leaderboards.html  # Leaderboards
 │   ├── about.html         # About us
 │   └── contact.html       # Contact page
-├── css/
-│   ├── style.css          # Custom styles
-│   └── tailwind.css       # Tailwind CSS
 ├── js/
 │   ├── main.js            # Main JavaScript
 │   ├── games/
