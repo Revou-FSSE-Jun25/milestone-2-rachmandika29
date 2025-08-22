@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Contact Us | Mainkeun Game Studio</title>
+    <link rel="icon" type="image/png" href="../assets/images/icons/MainKeunBaseLogoTransparent.png" />
+    <meta name="description" content="Get in touch with Mainkeun Game Studio. Contact us for game development inquiries, partnerships, or support." />
+    <meta name="keywords" content="contact mainkeun, game studio contact, javascript games support, game development inquiry" />
+    <meta name="author" content="Mainkeun Game Studio" />
+    <meta name="robots" content="index, follow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="../js/main.js"></script>
+    <link rel="stylesheet" href="../css/vt320-terminal.css">
+  </head>
+  <body class="font-['VT323'] bg-black text-terminal-green text-lg leading-relaxed overflow-x-hidden terminal-glow">
+    <header class="bg-black shadow-lg sticky top-0 z-50 border-b-2 border-terminal-green">
+      <nav class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+        <!-- Mobile and Desktop Navigation Container -->
+        <div class="flex justify-between items-center">
+          
+          <!-- Mobile Menu Button -->
+          <button 
+             id="mobile-menu-button"
+             class="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1 focus:outline-none focus:ring-2 focus:ring-terminal-green rounded border border-terminal-green bg-transparent"
+             aria-label="Toggle mobile menu"
+           >
+             <span class="block w-6 h-0.5 bg-terminal-green terminal-glow transition-all duration-300"></span>
+             <span class="block w-6 h-0.5 bg-terminal-green terminal-glow transition-all duration-300"></span>
+             <span class="block w-6 h-0.5 bg-terminal-green terminal-glow transition-all duration-300"></span>
+           </button>
+          
+          <!-- Desktop Navigation Menu -->
+          <ul class="hidden md:flex items-center justify-end gap-6 lg:gap-8">
+            <li>
+              <a 
+                href="../index.html" 
+                class="text-terminal-green font-normal text-xl lg:text-2xl transition-all duration-300 hover:text-terminal-green-bright terminal-glow-hover hover:bg-terminal-green-alpha-hover hover:px-2 hover:py-1 hover:border hover:border-terminal-green tracking-wide"
+              >
+                [HOME]
+              </a>
+            </li>
+            <li>
+              <a 
+                href="games.html" 
+                class="text-terminal-green font-normal text-xl lg:text-2xl transition-all duration-300 hover:text-terminal-green-bright terminal-glow-hover hover:bg-terminal-green-alpha-hover hover:px-2 hover:py-1 hover:border hover:border-terminal-green tracking-wide"
+              >
+                [GAMES]
+              </a>
+            </li>
+            <li>
+              <a 
+                href="about.html" 
+                class="text-terminal-green font-normal text-xl lg:text-2xl transition-all duration-300 hover:text-terminal-green-bright terminal-glow-hover hover:bg-terminal-green-alpha-hover hover:px-2 hover:py-1 hover:border hover:border-terminal-green tracking-wide"
+              >
+                [ABOUT]
+              </a>
+            </li>
+            <li>
+              <a 
+                href="contact.html" 
+                class="text-terminal-green-bright font-normal text-xl lg:text-2xl transition-all duration-300 hover:text-terminal-green-bright terminal-glow-hover hover:bg-terminal-green-alpha-hover hover:px-2 hover:py-1 hover:border hover:border-terminal-green tracking-wide"
+              >
+                [CONTACT]
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div 
+          id="mobile-menu" 
+          class="md:hidden mt-4 pb-4 border-t border-terminal-green bg-black hidden"
+        >
+          <ul class="flex flex-col space-y-4 pt-4">
+            <li>
+              <a 
+                href="../index.html" 
+                class="block text-terminal-green font-normal text-lg py-2 px-4 rounded-none transition-all duration-300 hover:text-terminal-green-bright hover:bg-terminal-green-alpha-hover border border-transparent hover:border-terminal-green"
+              >
+                [HOME]
+              </a>
+            </li>
+            <li>
+              <a 
+                href="games.html" 
+                class="block text-terminal-green font-normal text-lg py-2 px-4 rounded-none transition-all duration-300 hover:text-terminal-green-bright hover:bg-terminal-green-alpha-hover border border-transparent hover:border-terminal-green"
+              >
+                [GAMES]
+              </a>
+            </li>
+            <li>
+              <a 
+                href="about.html" 
+                class="block text-terminal-green font-normal text-lg py-2 px-4 rounded-none transition-all duration-300 hover:text-terminal-green-bright hover:bg-terminal-green-alpha-hover border border-transparent hover:border-terminal-green"
+              >
+                [ABOUT]
+              </a>
+            </li>
+            <li>
+              <a 
+                href="contact.html" 
+                class="block text-terminal-green-bright font-normal text-lg py-2 px-4 rounded-none transition-all duration-300 hover:text-terminal-green-bright hover:bg-terminal-green-alpha-hover border border-transparent hover:border-terminal-green"
+              >
+                [CONTACT]
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    
+    <main class="py-10 px-5 max-w-6xl mx-auto">
+      <section id="contact-hero" class="mb-16 p-8 border-2 border-terminal-green bg-terminal-green-alpha relative">
+        <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[SECTION]</div>
+        <h1 class="text-5xl md:text-6xl text-center mb-8 text-terminal-green-bright terminal-glow-bright font-normal tracking-widest terminal-typing">
+          >> COMMUNICATION PROTOCOL
+        </h1>
+        <p class="mb-4 text-xl leading-relaxed text-center">
+          ESTABLISHING CONNECTION...
+        </p>
+        <p class="text-xl leading-relaxed text-center">
+          READY TO RECEIVE TRANSMISSIONS
+        </p>
+      </section>
+      
+      <section id="contact-form" class="mb-16 p-8 border-2 border-terminal-green bg-terminal-green-alpha relative">
+        <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[SECTION]</div>
+        <h2 class="text-4xl mb-6 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">
+          >> MESSAGE TRANSMISSION FORM
+        </h2>
+        <form class="space-y-6">
+          <div>
+            <label class="block text-xl mb-2 text-terminal-green-bright">SENDER NAME:</label>
+            <input type="text" class="w-full bg-black border-2 border-terminal-green text-terminal-green p-3 text-lg font-['VT323'] focus:outline-none focus:border-terminal-green-bright terminal-glow" placeholder="ENTER YOUR DESIGNATION...">
+          </div>
+          <div>
+            <label class="block text-xl mb-2 text-terminal-green-bright">COMMUNICATION CHANNEL:</label>
+            <input type="email" class="w-full bg-black border-2 border-terminal-green text-terminal-green p-3 text-lg font-['VT323'] focus:outline-none focus:border-terminal-green-bright terminal-glow" placeholder="ENTER EMAIL ADDRESS...">
+          </div>
+          <div>
+            <label class="block text-xl mb-2 text-terminal-green-bright">SUBJECT LINE:</label>
+            <input type="text" class="w-full bg-black border-2 border-terminal-green text-terminal-green p-3 text-lg font-['VT323'] focus:outline-none focus:border-terminal-green-bright terminal-glow" placeholder="ENTER MESSAGE SUBJECT...">
+          </div>
+          <div>
+            <label class="block text-xl mb-2 text-terminal-green-bright">MESSAGE CONTENT:</label>
+            <textarea rows="6" class="w-full bg-black border-2 border-terminal-green text-terminal-green p-3 text-lg font-['VT323'] focus:outline-none focus:border-terminal-green-bright terminal-glow resize-none" placeholder="ENTER YOUR MESSAGE DATA..."></textarea>
+          </div>
+          <button type="submit" class="bg-transparent border-2 border-terminal-green text-terminal-green px-8 py-3 text-xl font-normal transition-all duration-300 hover:bg-terminal-green-alpha-hover hover:text-terminal-green-bright terminal-glow-hover">
+            [TRANSMIT MESSAGE]
+          </button>
+        </form>
+      </section>
+      
+      <section id="contact-info" class="mb-16 p-8 border-2 border-terminal-green bg-terminal-green-alpha relative">
+        <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[SECTION]</div>
+        <h2 class="text-4xl mb-6 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">
+          >> DIRECT COMMUNICATION CHANNELS
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="border border-terminal-green p-6 bg-terminal-green-alpha">
+            <h3 class="text-2xl mb-4 text-terminal-green-bright">>> PRIMARY CHANNELS</h3>
+            <p class="text-lg mb-3">EMAIL: contact@mainkeun.studio</p>
+            <p class="text-lg mb-3">DISCORD: MainkeunStudio#0001</p>
+            <p class="text-lg mb-3">GITHUB: @mainkeun-studio</p>
+            <p class="text-lg">STATUS: MONITORING ACTIVE</p>
+          </div>
+          <div class="border border-terminal-green p-6 bg-terminal-green-alpha">
+            <h3 class="text-2xl mb-4 text-terminal-green-bright">>> RESPONSE PROTOCOL</h3>
+            <p class="text-lg mb-3">STANDARD RESPONSE: 24-48 HOURS</p>
+            <p class="text-lg mb-3">URGENT INQUIRIES: 2-6 HOURS</p>
+            <p class="text-lg mb-3">BUSINESS HOURS: 09:00-17:00 UTC</p>
+            <p class="text-lg">AVAILABILITY: MONDAY-FRIDAY</p>
+          </div>
+        </div>
+      </section>
+      
+      <section id="partnerships" class="mb-16 p-8 border-2 border-terminal-green bg-terminal-green-alpha relative">
+        <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[SECTION]</div>
+        <h2 class="text-4xl mb-6 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">
+          >> COLLABORATION OPPORTUNITIES
+        </h2>
+        <div class="space-y-4">
+          <p class="text-xl leading-relaxed">
+            GAME DEVELOPMENT PARTNERSHIPS: AVAILABLE
+          </p>
+          <p class="text-xl leading-relaxed">
+            FREELANCE JAVASCRIPT PROJECTS: ACCEPTING
+          </p>
+          <p class="text-xl leading-relaxed">
+            EDUCATIONAL COLLABORATIONS: INTERESTED
+          </p>
+          <p class="text-xl leading-relaxed">
+            OPEN SOURCE CONTRIBUTIONS: WELCOME
+          </p>
+        </div>
+      </section>
+    </main>
+    
+    <footer class="bg-black border-t-2 border-terminal-green p-5 text-center mt-10">
+      <p class="m-0 text-base text-terminal-green-dim">
+        © 2024 MAINKEUN GAME STUDIO - COMMUNICATION MODULE LOADED
+      </p>
+    </footer>
+  </body>
+</html>

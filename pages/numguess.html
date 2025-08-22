@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VT320 Terminal - Number Guessing Game</title>
+    <meta name="description" content="Classic number guessing game with authentic VT320 terminal styling">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/vt320-terminal.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323:wght@400&display=swap" rel="stylesheet">
+</head>
+<body class="bg-black text-terminal-green font-mono min-h-screen p-4 font-vt323 text-lg leading-relaxed overflow-x-hidden">
+    <!-- Terminal Header -->
+    <div class="terminal-scanlines fixed inset-0 pointer-events-none z-10"></div>
+    
+    <div class="max-w-4xl mx-auto relative z-20">
+        <!-- Terminal Title Bar -->
+        <div class="border border-terminal-green mb-6 bg-black">
+            <div class="border-b border-terminal-green p-3 bg-terminal-green bg-opacity-10">
+                <div class="flex items-center justify-between">
+                    <span class="text-terminal-green-bright font-bold">[SYSTEM] VT320 TERMINAL v2.1</span>
+                    <span class="text-terminal-green-dim text-sm">SESSION: NUMGUESS.EXE</span>
+                </div>
+            </div>
+            
+            <!-- Game Container -->
+            <div class="p-6">
+                <!-- System Boot Message -->
+                <div class="mb-6">
+                    <div class="text-terminal-green-bright mb-2">
+                        <span class="blinking-cursor">></span> INITIALIZING NUMBER_GUESSING_PROTOCOL...
+                    </div>
+                    <div class="text-terminal-green-dim mb-2">SYSTEM: DEC VT320 COMPATIBLE TERMINAL</div>
+                    <div class="text-terminal-green-dim mb-4">GAME_MODULE: LOADED SUCCESSFULLY</div>
+                </div>
+
+                <!-- Game Title -->
+                <div class="border border-terminal-green-dim p-4 mb-6 bg-terminal-green bg-opacity-5">
+                    <h1 class="text-2xl md:text-3xl font-bold text-center text-terminal-green-bright mb-2 terminal-glow">
+                        [NUMBER GUESSING PROTOCOL]
+                    </h1>
+                    <div class="text-center text-terminal-green-dim">
+                        <span class="blinking-cursor">></span> DIFFICULTY: STANDARD | RANGE: 1-100 | ATTEMPTS: 10
+                    </div>
+                </div>
+
+                <!-- Game Instructions -->
+                <div class="mb-6 p-4 border-l-4 border-terminal-green-dim bg-terminal-green bg-opacity-5">
+                    <div class="text-terminal-green mb-2">
+                        <span class="text-terminal-green-bright">[MISSION_BRIEFING]</span>
+                    </div>
+                    <div class="text-terminal-green-dim">
+                        The system has generated a random integer between 1 and 100.<br>
+                        Your objective: Identify the target number within 10 attempts.<br>
+                        The terminal will provide directional feedback after each guess.
+                    </div>
+                </div>
+
+                <!-- Game Interface -->
+                <div id="gameContainer" class="space-y-6">
+                    <!-- Input Section -->
+                    <div class="border border-terminal-green-dim p-4 bg-black">
+                        <label for="guessInput" class="block text-terminal-green-bright mb-3 font-bold">
+                            <span class="blinking-cursor">></span> ENTER_TARGET_VALUE:
+                        </label>
+                        <div class="flex gap-3">
+                            <input
+                                id="guessInput"
+                                type="number"
+                                min="1"
+                                max="100"
+                                placeholder="001-100"
+                                class="flex-1 bg-black border border-terminal-green text-terminal-green-bright px-4 py-3 font-vt323 text-lg focus:border-terminal-green-bright focus:outline-none focus:ring-2 focus:ring-terminal-green focus:ring-opacity-50 terminal-glow transition-all"
+                            />
+                            <button
+                                id="submitBtn"
+                                class="px-6 py-3 bg-terminal-green bg-opacity-20 text-terminal-green-bright font-bold border border-terminal-green hover:bg-terminal-green hover:bg-opacity-30 hover:text-black focus:outline-none focus:ring-2 focus:ring-terminal-green transition-all terminal-glow"
+                            >
+                                [EXECUTE]
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Feedback Area -->
+                    <div
+                        id="feedback"
+                        class="p-4 border border-terminal-green-dim bg-terminal-green bg-opacity-10 text-center font-bold hidden"
+                    >
+                        <!-- Feedback messages will appear here -->
+                    </div>
+
+                    <!-- System Status -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Attempts Counter -->
+                        <div class="border border-terminal-green-dim p-4 bg-black">
+                            <div class="text-terminal-green-bright font-bold mb-2">[SYSTEM_STATUS]</div>
+                            <div class="text-terminal-green">
+                                ATTEMPTS_REMAINING: <span id="attemptsLeft" class="text-terminal-green-bright font-bold">10</span>/10
+                            </div>
+                            <div class="text-terminal-green-dim text-sm mt-1">
+                                PROTOCOL_STATUS: <span id="gameStatus" class="text-terminal-green">ACTIVE</span>
+                            </div>
+                        </div>
+
+                        <!-- Game Statistics -->
+                        <div class="border border-terminal-green-dim p-4 bg-black">
+                            <div class="text-terminal-green-bright font-bold mb-2">[STATISTICS]</div>
+                            <div class="text-terminal-green text-sm">
+                                TOTAL_GUESSES: <span id="totalGuesses" class="text-terminal-green-bright">0</span><br>
+                                ACCURACY_RATE: <span id="accuracy" class="text-terminal-green-bright">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Previous Guesses -->
+                    <div id="previousGuesses" class="border border-terminal-green-dim p-4 bg-black hidden">
+                        <div class="text-terminal-green-bright font-bold mb-3">[GUESS_HISTORY]</div>
+                        <div id="guessList" class="flex flex-wrap gap-2">
+                            <!-- Previous guesses will appear here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game Over Section -->
+                <div id="gameOverContainer" class="text-center space-y-4 hidden">
+                    <div id="gameOverMessage" class="border border-terminal-green p-6 bg-terminal-green bg-opacity-10">
+                        <!-- Game over message will appear here -->
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button
+                            id="resetBtn"
+                            class="px-8 py-3 bg-terminal-green bg-opacity-20 text-terminal-green-bright font-bold border border-terminal-green hover:bg-terminal-green hover:bg-opacity-30 hover:text-black focus:outline-none focus:ring-2 focus:ring-terminal-green transition-all terminal-glow"
+                        >
+                            [RESTART_PROTOCOL]
+                        </button>
+                        <button
+                            id="backToGames"
+                            class="px-8 py-3 bg-black text-terminal-green border border-terminal-green-dim hover:border-terminal-green hover:text-terminal-green-bright focus:outline-none focus:ring-2 focus:ring-terminal-green transition-all"
+                            onclick="window.close()"
+                        >
+                            [RETURN_TO_GAMES]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Terminal Footer -->
+        <div class="text-center text-terminal-green-dim text-sm mt-6">
+            <div class="typing-animation">
+                VT320_TERMINAL © 2024 | GAME_ENGINE: JAVASCRIPT | STATUS: OPERATIONAL
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/guessing.js"></script>
+</body>
+</html>

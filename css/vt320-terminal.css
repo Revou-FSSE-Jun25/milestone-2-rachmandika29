@@ -1,0 +1,84 @@
+/* VT320 Terminal - Custom Properties and Animations Only */
+:root {
+  --terminal-green: #00ff41;
+  --terminal-green-dim: #00cc33;
+  --terminal-green-bright: #66ff66;
+}
+
+/* Terminal screen scanline effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(transparent 50%, rgba(0, 255, 65, 0.03) 50%),
+    linear-gradient(90deg, transparent 50%, rgba(0, 255, 65, 0.03) 50%);
+  background-size: 100% 4px, 4px 100%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Terminal cursor animation */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.terminal-cursor::after {
+  content: '_';
+  animation: blink 1s infinite;
+  color: var(--terminal-green-bright);
+}
+
+/* Terminal typing effect */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.terminal-typing {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 2s steps(40, end);
+}
+
+/* Custom text shadows for terminal glow */
+.terminal-glow {
+  text-shadow: 0 0 5px var(--terminal-green);
+}
+
+.terminal-glow-bright {
+  text-shadow: 0 0 8px var(--terminal-green);
+}
+
+.terminal-glow-hover:hover {
+  text-shadow: 0 0 10px var(--terminal-green-bright);
+}
+
+/* Custom colors for terminal theme */
+.text-terminal-green {
+  color: var(--terminal-green);
+}
+
+.text-terminal-green-dim {
+  color: var(--terminal-green-dim);
+}
+
+.text-terminal-green-bright {
+  color: var(--terminal-green-bright);
+}
+
+.border-terminal-green {
+  border-color: var(--terminal-green);
+}
+
+.bg-terminal-green-alpha {
+  background-color: rgba(0, 255, 65, 0.05);
+}
+
+.bg-terminal-green-alpha-hover:hover {
+  background-color: rgba(0, 255, 65, 0.1);
+}

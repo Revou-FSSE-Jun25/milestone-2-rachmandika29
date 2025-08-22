@@ -1,10 +1,10 @@
 # Mainkeun Game Studio - Landing Page
 
-A modern, responsive landing page for Mainkeun Game Studio featuring interactive JavaScript games and a sleek design.
+A retro-styled, responsive landing page for Mainkeun Game Studio featuring interactive JavaScript games with an authentic DEC VT320 terminal aesthetic.
 
 ## 🎮 Project Overview
 
-Mainkeun is a game studio company specializing in browser-based JavaScript games. This landing page serves as the main hub for showcasing our games, leaderboards, company information, and contact details.
+Mainkeun is a game studio company specializing in browser-based JavaScript games. This landing page serves as the main hub for showcasing our games, leaderboards, company information, and contact details with a classic terminal computing experience.
 
 ## 📋 Pages Structure
 
@@ -21,17 +21,45 @@ The landing page consists of 5 main pages:
 - **HTML5** - Semantic markup and structure
 - **CSS3 with Tailwind CSS** - Utility-first CSS framework for rapid styling
 - **JavaScript (ES6+)** - Modern JavaScript for interactivity and game logic
+- **VT323 Font** - Google Fonts monospace font for authentic terminal feel
 
-## 🎨 Design System
+## 🎨 Design System - VT320 Terminal Theme
 
 ### Color Scheme
-- **Primary Color**: Dark Blue (`#1e3a8a` or similar)
-- **Secondary Color**: Normal Blue (`#3b82f6` or similar)
-- **Accent Color**: Light Blue (`#93c5fd` or similar)
+- **Background**: Pure Black (`#000000`) - Authentic terminal background
+- **Primary Text**: Terminal Green (`#00ff41`) - Classic green phosphor display
+- **Secondary Text**: Dim Green (`#00cc33`) - Subdued terminal text
+- **Accent Color**: Bright Green (`#66ff66`) - Highlighted terminal elements
+- **Border Color**: Dark Gray (`#333333`) - Terminal window borders
 
 ### Typography
-- **Font Family**: Kanit - A modern, clean font perfect for gaming websites
-- **Font Weights**: Regular (400), Medium (500), SemiBold (600), Bold (700)
+- **Font Family**: VT323 - Authentic monospace terminal font from Google Fonts
+- **Font Sizes**: Responsive scaling from 16px (mobile) to 20px+ (desktop)
+- **Text Effects**: 
+  - Glowing text shadows for authentic CRT monitor effect
+  - Blinking cursor animations
+  - Terminal typing effects
+
+### Visual Effects
+- **Scanlines**: CSS-generated horizontal scanlines to simulate CRT monitor
+- **Text Glow**: Multiple text-shadow layers for phosphor glow effect
+- **Terminal Borders**: Green borders around sections mimicking terminal windows
+- **Hover Effects**: Enhanced glow and background highlights
+
+## 🖥️ Terminal Aesthetic Features
+
+### Visual Design Elements
+- **Terminal Sections**: Each content section styled as terminal windows with `[SECTION]` labels
+- **Command-Style Navigation**: Menu items formatted as `[HOME]`, `[GAMES]`, etc.
+- **System Messages**: Content written in terminal/system language style
+- **Cursor Animation**: Blinking underscore cursor for authentic terminal feel
+- **Typing Animation**: Animated text appearance for main headings
+
+### Interactive Elements
+- **Terminal Buttons**: Green bordered buttons with hover glow effects
+- **Input Fields**: Terminal-styled form inputs with green borders
+- **Scrollbar**: Custom-styled scrollbar matching terminal theme
+- **Mobile Menu**: Terminal-styled mobile navigation
 
 ## 🎯 Featured Games
 
