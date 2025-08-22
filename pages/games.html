@@ -145,7 +145,7 @@
               FEATURES: AUTO-CLICKERS, UPGRADES, ACHIEVEMENTS
             </p>
             <button class="bg-transparent border-2 border-terminal-green text-terminal-green px-6 py-3 text-xl font-normal transition-all duration-300 hover:bg-terminal-green-alpha-hover hover:text-terminal-green-bright terminal-glow-hover">
-              [LAUNCH GAME]
+              [LAUNCH_GAME]
             </button>
           </div>
           <div class="border border-terminal-green p-6 bg-terminal-green-alpha">
@@ -159,70 +159,37 @@
       </section>
       
       <section id="guessing-game" class="mb-16 p-8 border-2 border-terminal-green bg-terminal-green-alpha relative">
-        <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[SECTION]</div>
-        <h2 class="text-4xl mb-6 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">
-          >> NUMBER GUESSING MODULE
-        </h2>
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-          <div>
-            <p class="mb-4 text-xl leading-relaxed">
-              GAME TYPE: LOGICAL DEDUCTION CHALLENGE
-            </p>
-            <p class="mb-4 text-xl leading-relaxed">
-              OBJECTIVE: IDENTIFY TARGET NUMBER
-            </p>
-            <p class="mb-6 text-xl leading-relaxed">
-              FEATURES: HINT SYSTEM, MULTIPLE DIFFICULTIES
-            </p>
-            <!-- Number Guessing Game Section -->
-            <div class="border border-terminal-green-dim p-6 bg-black hover:bg-terminal-green hover:bg-opacity-5 transition-all">
-                <div class="flex items-start justify-between mb-4">
-                    <div>
-                        <h3 class="text-xl font-bold text-terminal-green-bright mb-2 terminal-glow">
-                            [NUMBER_GUESSING_PROTOCOL]
-                        </h3>
-                        <div class="text-terminal-green-dim mb-3">
-                            Classic number guessing game with terminal interface.<br>
-                            Identify the target number within 10 attempts.
-                        </div>
-                    </div>
-                    <div class="text-terminal-green-dim text-sm">
-                        STATUS: <span class="text-terminal-green">READY</span>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 text-sm">
-                    <div class="text-terminal-green-dim">
-                        DIFFICULTY: <span class="text-terminal-green">STANDARD</span>
-                    </div>
-                    <div class="text-terminal-green-dim">
-                        RANGE: <span class="text-terminal-green">1-100</span>
-                    </div>
-                    <div class="text-terminal-green-dim">
-                        ATTEMPTS: <span class="text-terminal-green">10</span>
-                    </div>
-                    <div class="text-terminal-green-dim">
-                        TYPE: <span class="text-terminal-green">LOGIC</span>
-                    </div>
-                </div>
-                
-                <button 
-                    onclick="window.open('numguess.html', '_blank')"
-                    class="w-full px-6 py-3 bg-terminal-green bg-opacity-20 text-terminal-green-bright font-bold border border-terminal-green hover:bg-terminal-green hover:bg-opacity-30 hover:text-black focus:outline-none focus:ring-2 focus:ring-terminal-green transition-all terminal-glow"
-                >
-                    [LAUNCH_GAME]
-                </button>
-            </div>
-          </div>
-          <div class="border border-terminal-green p-6 bg-terminal-green-alpha">
-            <h3 class="text-2xl mb-4 text-terminal-green-bright">>> GAME STATS</h3>
-            <p class="text-lg mb-2">DIFFICULTY: EASY/MEDIUM/HARD</p>
-            <p class="text-lg mb-2">PLAYTIME: 2-10 MINUTES</p>
-            <p class="text-lg mb-2">SCORING: ATTEMPT-BASED</p>
-            <p class="text-lg">STATUS: OPERATIONAL</p>
-          </div>
-        </div>
-      </section>
+  <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[SECTION]</div>
+  <h2 class="text-4xl mb-6 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">
+    >> NUMBER GUESSING MODULE
+  </h2>
+  <div class="grid md:grid-cols-2 gap-8 items-center">
+    <div>
+      <p class="mb-4 text-xl leading-relaxed">
+        GAME TYPE: LOGICAL DEDUCTION CHALLENGE
+      </p>
+      <p class="mb-4 text-xl leading-relaxed">
+        OBJECTIVE: IDENTIFY TARGET NUMBER
+      </p>
+      <p class="mb-6 text-xl leading-relaxed">
+        FEATURES: HINT SYSTEM, MULTIPLE DIFFICULTIES
+      </p>
+      <button 
+        onclick="window.open('numguess.html', '_blank')"
+        class="bg-transparent border-2 border-terminal-green text-terminal-green px-6 py-3 text-xl font-normal transition-all duration-300 hover:bg-terminal-green-alpha-hover hover:text-terminal-green-bright terminal-glow-hover"
+      >
+        [LAUNCH_GAME]
+      </button>
+    </div>
+    <div class="border border-terminal-green p-6 bg-terminal-green-alpha">
+      <h3 class="text-2xl mb-4 text-terminal-green-bright">>> GAME STATS</h3>
+      <p class="text-lg mb-2">DIFFICULTY: PROGRESSIVE</p>
+      <p class="text-lg mb-2">PLAYTIME: 2-10 MINUTES</p>
+      <p class="text-lg mb-2">SCORING: ATTEMPT-BASED</p>
+      <p class="text-lg">STATUS: OPERATIONAL</p>
+    </div>
+  </div>
+</section>
       
       <section id="leaderboards" class="mb-16 p-8 border-2 border-terminal-green bg-terminal-green-alpha relative">
         <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[SECTION]</div>
