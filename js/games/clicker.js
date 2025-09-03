@@ -8,7 +8,6 @@ class CookieClickerGame {
   constructor() {
     this.gameState = {
       cookies: 0,
-      totalClicks: 0,
       timeRemaining: 30, 
       gameActive: false,
       gameStarted: false,
@@ -48,7 +47,6 @@ class CookieClickerGame {
     this.elements = {
       mainClicker: document.getElementById("mainClicker"),
       totalScore: document.getElementById("totalScore"),
-      totalClicks: document.getElementById("totalClicks"),
       timeRemaining: document.getElementById("timeRemaining"),
       gameStatus: document.getElementById("gameStatus"),
       startButton: document.getElementById("startButton"),
@@ -97,7 +95,6 @@ class CookieClickerGame {
 
     const clickValue = 1;
     this.gameState.cookies += clickValue;
-    this.gameState.totalClicks++;
 
     // Create click effect
     this.createClickEffect(event, clickValue);
@@ -122,7 +119,6 @@ class CookieClickerGame {
     this.gameState.gameStarted = true;
     this.gameState.timeRemaining = 30
     this.gameState.cookies = 0;
-    this.gameState.totalClicks = 0;
 
     this.startTimer();
     this.updateUI();
@@ -136,8 +132,6 @@ class CookieClickerGame {
     this.gameState.gameStarted = false;
     this.gameState.timeRemaining = 30;
     this.gameState.cookies = 0;
-    this.gameState.totalClicks = 0;
-
     if (this.gameTimer) {
       clearInterval(this.gameTimer);
       this.gameTimer = null;
@@ -216,9 +210,6 @@ class CookieClickerGame {
   updateUI() {
     this.elements.totalScore.textContent = Utils.formatNumber(
       this.gameState.cookies
-    );
-    this.elements.totalClicks.textContent = Utils.formatNumber(
-      this.gameState.totalClicks
     );
 
     // Update timer display
