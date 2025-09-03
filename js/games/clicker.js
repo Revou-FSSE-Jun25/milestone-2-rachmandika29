@@ -14,7 +14,6 @@ class CookieClickerGame {
 
     this.elements = {};
     this.gameTimer = null;
-    this.autoSaveInterval = null;
   }
 
   /* Initialize game */

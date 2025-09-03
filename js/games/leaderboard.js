@@ -17,11 +17,6 @@ class Leaderboard {
         /* Initialize storage manager with prefix */
         this.storage = new StorageManager('leaderboard_');
         
-        /* Bind methods */
-        this.boundMethods = {
-            handleScoreSubmission: this.handleScoreSubmission.bind(this)
-        };
-        
         this.isInitialized = false;
         Utils.debug('Leaderboard instance created');
     }
@@ -145,11 +140,7 @@ class Leaderboard {
         Utils.debug(`Cleared leaderboard for ${gameType}`);
     }
 
-    /* Clear all leaderboards */
-    clearAllLeaderboards() {
-        this.saveLeaderboardData({});
-        Utils.debug('All leaderboards cleared');
-    }
+
 
     /* Format score display based on game type */
     formatScore(gameType, score) {
@@ -317,11 +308,7 @@ class Leaderboard {
         };
         Events.addEventListener(document, 'keydown', escapeHandler);
     }
-    /* Handle score submission event */
-    handleScoreSubmission(event) {
-        const { gameType, score, callback } = event.detail;
-        this.showScoreSubmission(gameType, score, callback);
-    }
+
     
     /* Destroy leaderboard instance */
     destroy() {
@@ -346,12 +333,6 @@ export function initializeLeaderboard(options = {}) {
 
 /* Export classes and functions */
 export { Leaderboard };
-
-/* Default export */
-export default {
-    Leaderboard,
-    initializeLeaderboard
-};
 
 /* Create global instance for backward compatibility */
 if (typeof window !== 'undefined') {
