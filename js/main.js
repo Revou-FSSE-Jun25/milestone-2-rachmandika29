@@ -49,7 +49,7 @@ class Application {
         enableSmoothScroll: true,
         enableFormValidation: true,
         enableStorage: true,
-        storagePrefix: "mainkeun_",
+        storagePrefix: "RevoFun_",
         smoothScrollOptions: {
           behavior: "smooth",
           block: "start",
@@ -151,7 +151,7 @@ function initializeApplication() {
 
   /* Global debug access */
   if (DEBUG_ENABLED) {
-    window.MainkeunApp = app;
+    window.RevoFunApp = app;
   }
 
   return app;

@@ -1,10 +1,10 @@
-# Mainkeun Game Studio - Landing Page
+# RevoFun Game Studio - Landing Page
 
-A retro-styled, responsive landing page for Mainkeun Game Studio featuring interactive JavaScript games with an authentic DEC VT320 terminal aesthetic.
+A retro-styled, responsive landing page for RevoFun Game Studio featuring interactive JavaScript games with an authentic DEC VT320 terminal aesthetic.
 
 ## 🎮 Project Overview
 
-Mainkeun is a game studio company specializing in browser-based JavaScript games. This landing page serves as the main hub for showcasing our games, leaderboards, company information, and contact details with a classic terminal computing experience.
+RevoFun is a game studio company specializing in browser-based JavaScript games. This landing page serves as the main hub for showcasing our games, leaderboards, company information, and contact details with a classic terminal computing experience.
 
 ## 📋 Pages Structure
 
@@ -91,7 +91,7 @@ The website showcases two fully-functional JavaScript-based games with integrate
 ## 📁 Project Structure
 
 ```
-mainkeun-landing-page/
+RevoFun-landing-page/
 ├── index.html              # Home page with hero section and game previews
 ├── pages/
 │   ├── games.html         # Games showcase page
@@ -252,4 +252,4 @@ mainkeun-landing-page/
 The website will be deployed on
 - **Vercel**: Fast deployment with automatic HTTPS
 - **Hostinger Shared Hosting**: For full stable hosting enviornment.
-- Can be accessed from [http://mainkeun.dikadikadika.com/]
+- Can be accessed from [http://RevoFun.dikadikadika.com/]
