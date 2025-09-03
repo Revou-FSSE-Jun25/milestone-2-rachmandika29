@@ -10,6 +10,9 @@ import { initializeCore, CONFIG, Utils } from './cores/core.js';
 // Import feature modules
 import { initializeNavigation } from './navigation/navigation.js';
 import { initializeUtils } from './cores/utils.js';
+import { initializeLeaderboard } from './games/leaderboard.js';
+import { initializeCookieClicker } from './games/clicker.js';
+import { initializeNumberGuessingGame } from './games/guessing.js';
 
 /**
  * Application class to manage the entire application lifecycle
@@ -18,7 +21,10 @@ class Application {
     constructor() {
         this.modules = {
             navigation: null,
-            utils: null
+            utils: null,
+            leaderboard: null,
+            cookieClicker: null,
+            numberGuessing: null
         };
         
         this.isInitialized = false;
@@ -55,6 +61,28 @@ class Application {
                     offset: 80 // Account for sticky header
                 }
             });
+            
+            // Initialize leaderboard system
+            this.modules.leaderboard = initializeLeaderboard({
+                maxEntries: 10,
+                enableDebug: CONFIG.DEBUG
+            });
+            
+            // Initialize games
+            this.modules.cookieClicker = initializeCookieClicker({
+                enableDebug: CONFIG.DEBUG
+            });
+            
+            this.modules.numberGuessing = initializeNumberGuessingGame({
+                enableDebug: CONFIG.DEBUG
+            });
+
+            // Make modules globally accessible
+            if (typeof window !== 'undefined') {
+                window.gameLeaderboard = this.modules.leaderboard;
+                window.cookieClickerGame = this.modules.cookieClicker;
+                window.numberGuessingGame = this.modules.numberGuessing;
+            }
             
             this.isInitialized = true;
             Utils.debug('Application initialized successfully');
@@ -163,7 +191,9 @@ function initializeApplication() {
 /**
  * DOM Content Loaded event handler
  */
-document.addEventListener('DOMContentLoaded', initializeApplication);
+document.addEventListener('DOMContentLoaded', () => {
+    initializeApplication();
+});
 
 // Handle page visibility changes to potentially pause/resume functionality
 document.addEventListener('visibilitychange', () => {

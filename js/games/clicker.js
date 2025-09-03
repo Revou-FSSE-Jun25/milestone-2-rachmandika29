@@ -1,7 +1,7 @@
 // Cookie Clicker Game - Main Logic
 // Modular implementation with state management, upgrades, and achievements
 
-import { logMessage, formatNumber } from '../cores/utils.js';
+import { Utils } from '../cores/core.js';
 import { initializeNavigation } from '../navigation/navigation.js';
 
 class CookieClickerGame {
@@ -104,7 +104,7 @@ class CookieClickerGame {
     // Initialize the game
     async init() {
         try {
-            logMessage('Initializing Cookie Clicker Game...');
+            Utils.logMessage('Initializing Cookie Clicker Game...');
             
             // Initialize navigation
             await initializeNavigation();
@@ -127,8 +127,9 @@ class CookieClickerGame {
             this.updateUI();
             this.renderUpgrades();
             this.renderAchievements();
+            this.renderLeaderboard();
             
-            logMessage('Cookie Clicker Game initialized successfully!');
+            Utils.logMessage('Cookie Clicker Game initialized successfully!');
         } catch (error) {
             console.error('Failed to initialize Cookie Clicker Game:', error);
         }
@@ -183,14 +184,14 @@ class CookieClickerGame {
         this.updateUI();
         this.checkAchievements();
         
-        logMessage(`Clicked! Got ${clickValue} cookies. Total: ${this.gameState.cookies}`);
+        Utils.logMessage(`Clicked! Got ${clickValue} cookies. Total: ${this.gameState.cookies}`);
     }
 
     // Create visual click effect
     createClickEffect(event, value) {
         const effect = document.createElement('div');
         effect.className = 'click-effect absolute text-2xl font-bold text-yellow-400 pointer-events-none animate-bounce';
-        effect.textContent = `+${formatNumber(value)}`;
+        effect.textContent = `+${Utils.formatNumber(value)}`;
         effect.style.left = '50%';
         effect.style.top = '50%';
         effect.style.transform = 'translate(-50%, -50%)';
@@ -230,7 +231,7 @@ class CookieClickerGame {
             this.renderUpgrades();
             this.checkAchievements();
             
-            logMessage(`Bought ${upgrade.name}! Now owned: ${this.gameState.upgrades[upgradeKey]}`);
+            Utils.logMessage(`Bought ${upgrade.name}! Now owned: ${this.gameState.upgrades[upgradeKey]}`);
         }
     }
 
@@ -267,12 +268,12 @@ class CookieClickerGame {
                         <div>
                             <h3 class="font-semibold text-white">${upgrade.name}</h3>
                             <p class="text-sm text-gray-300">${upgrade.description}</p>
-                            <p class="text-xs text-blue-400">+${formatNumber(upgrade.baseProduction)} cookies/sec</p>
+                            <p class="text-xs text-blue-400">+${Utils.formatNumber(upgrade.baseProduction)} cookies/sec</p>
                         </div>
                     </div>
                     <div class="text-right">
                         <div class="text-lg font-bold ${canAfford ? 'text-green-400' : 'text-red-400'}">
-                            ${formatNumber(cost)}
+                            ${Utils.formatNumber(cost)}
                         </div>
                         <div class="text-sm text-gray-400">Owned: ${owned}</div>
                     </div>
@@ -283,7 +284,7 @@ class CookieClickerGame {
                 upgradeElement.addEventListener('click', () => this.buyUpgrade(key));
                 upgradeElement.setAttribute('tabindex', '0');
                 upgradeElement.setAttribute('role', 'button');
-                upgradeElement.setAttribute('aria-label', `Buy ${upgrade.name} for ${formatNumber(cost)} cookies`);
+                upgradeElement.setAttribute('aria-label', `Buy ${upgrade.name} for ${Utils.formatNumber(cost)} cookies`);
                 
                 upgradeElement.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
@@ -318,7 +319,7 @@ class CookieClickerGame {
             this.elements.achievementNotification.style.transform = 'translateX(100%)';
         }, 3000);
         
-        logMessage(`Achievement unlocked: ${achievement.name}`);
+        Utils.logMessage(`Achievement unlocked: ${achievement.name}`);
     }
 
     // Render achievements list
@@ -344,10 +345,10 @@ class CookieClickerGame {
 
     // Update UI elements
     updateUI() {
-        this.elements.totalScore.textContent = formatNumber(this.gameState.cookies);
-        this.elements.cookiesPerSecond.textContent = formatNumber(this.gameState.cookiesPerSecond);
-        this.elements.totalClicks.textContent = formatNumber(this.gameState.totalClicks);
-        this.elements.clickPower.textContent = formatNumber(this.gameState.clickPower);
+        this.elements.totalScore.textContent = Utils.formatNumber(this.gameState.cookies);
+        this.elements.cookiesPerSecond.textContent = Utils.formatNumber(this.gameState.cookiesPerSecond);
+        this.elements.totalClicks.textContent = Utils.formatNumber(this.gameState.totalClicks);
+        this.elements.clickPower.textContent = Utils.formatNumber(this.gameState.clickPower);
     }
 
     // Game loop for passive income
@@ -357,11 +358,55 @@ class CookieClickerGame {
                 this.gameState.cookies += this.gameState.cookiesPerSecond / 10; // Update 10 times per second
                 this.updateUI();
                 this.checkAchievements();
+                this.checkLeaderboardTriggers();
             }
         }, 100);
     }
 
     // Auto-save functionality
+    // Render leaderboard
+    renderLeaderboard() {
+        if (typeof gameLeaderboard !== 'undefined' && gameLeaderboard && gameLeaderboard.isInitialized) {
+            gameLeaderboard.renderLeaderboard('clicker', 'clicker-leaderboard', 'Cookie Clicker Leaderboard');
+        } else {
+            // Retry after a short delay if leaderboard isn't ready
+            setTimeout(() => this.renderLeaderboard(), 100);
+        }
+    }
+
+    // Submit score to leaderboard
+    submitToLeaderboard() {
+        if (typeof gameLeaderboard !== 'undefined' && gameLeaderboard && gameLeaderboard.isInitialized && this.gameState.cookies >= 1000) {
+            gameLeaderboard.showScoreSubmission('clicker', Math.floor(this.gameState.cookies), () => {
+                this.renderLeaderboard();
+            });
+        }
+    }
+
+    // Check for leaderboard submission triggers
+    checkLeaderboardTriggers() {
+        // Submit to leaderboard when reaching certain milestones
+        const milestones = [1000, 10000, 100000, 1000000, 10000000];
+        const currentCookies = Math.floor(this.gameState.cookies);
+        
+        for (const milestone of milestones) {
+            if (currentCookies >= milestone && !this.gameState.leaderboardSubmissions?.includes(milestone)) {
+                if (!this.gameState.leaderboardSubmissions) {
+                    this.gameState.leaderboardSubmissions = [];
+                }
+                this.gameState.leaderboardSubmissions.push(milestone);
+                
+                // Show submission modal for significant milestones
+                if (milestone >= 10000) {
+                    setTimeout(() => {
+                        this.submitToLeaderboard();
+                    }, 1000);
+                }
+                break;
+            }
+        }
+    }
+
     // Cleanup when leaving the page
     destroy() {
         if (this.gameLoop) {
@@ -370,19 +415,60 @@ class CookieClickerGame {
     }
 }
 
-// Initialize game when DOM is loaded
-let game;
+// Game instance holder
+let gameInstance = null;
 
-document.addEventListener('DOMContentLoaded', async () => {
-    game = new CookieClickerGame();
-    await game.init();
-});
+/**
+ * Initialize the Cookie Clicker Game
+ * @param {Object} options - Configuration options
+ * @returns {Object} Game instance and control methods
+ */
+function initializeCookieClicker(options = {}) {
+    const config = {
+        enableDebug: false,
+        autoStart: true,
+        ...options
+    };
 
-// Cleanup when leaving
-window.addEventListener('beforeunload', () => {
-    if (game) {
-        game.destroy();
+    // Only initialize if we're on the clicker page
+    const mainClicker = document.getElementById('mainClicker');
+    if (!mainClicker) {
+        return null;
     }
-});
 
-export { CookieClickerGame };
+    try {
+        gameInstance = new CookieClickerGame();
+        
+        // Initialize the game
+        gameInstance.init().then(() => {
+            if (config.enableDebug) {
+                console.log('Cookie Clicker Game initialized successfully');
+            }
+        }).catch(error => {
+            console.error('Failed to initialize Cookie Clicker Game:', error);
+        });
+
+        // Setup cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (gameInstance) {
+                gameInstance.destroy();
+            }
+        });
+
+        return {
+            instance: gameInstance,
+            isInitialized: true,
+            destroy: () => {
+                if (gameInstance) {
+                    gameInstance.destroy();
+                    gameInstance = null;
+                }
+            }
+        };
+    } catch (error) {
+        console.error('Error initializing Cookie Clicker Game:', error);
+        return null;
+    }
+}
+
+export { CookieClickerGame, initializeCookieClicker };

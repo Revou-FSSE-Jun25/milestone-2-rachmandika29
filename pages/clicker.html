@@ -12,7 +12,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script type="module" src="../js/main.js"></script>
     <link rel="stylesheet" href="../css/main.css">
-    <script type="module" src="../js/games/clicker.js"></script>
 </head>
 <body class="font-['VT323'] bg-black text-terminal-green text-lg leading-relaxed overflow-x-hidden terminal-glow">
     <!-- Navigation Header -->
@@ -123,20 +122,17 @@
             </aside>
         </div>
 
-
+        <!-- Leaderboard Section -->
+        <div class="mt-8">
+            <div id="clicker-leaderboard"></div>
+        </div>
     </main>
 
     <!-- Achievement Notification -->
-    <div id="achievementNotification" class="fixed top-4 right-4 bg-terminal-green-alpha border-2 border-terminal-green text-terminal-green-bright px-6 py-4 shadow-lg transform translate-x-full transition-transform duration-300 z-50" role="alert" aria-live="assertive">
-        <div class="flex items-center space-x-3">
-            <div class="text-2xl terminal-glow">[!]</div>
-            <div>
-                <div class="font-bold text-lg tracking-wider">>> ACHIEVEMENT_UNLOCKED!</div>
-                <div id="achievementText" class="text-sm text-terminal-green"></div>
-            </div>
-        </div>
+    <div id="achievement-notification" class="fixed top-4 right-4 terminal-border bg-black p-4 transform translate-x-full transition-transform duration-300 z-50 hidden">
+        <div class="terminal-text terminal-green-bright font-bold" id="achievement-title"></div>
+        <div class="terminal-text" id="achievement-description"></div>
     </div>
-
 
 </body>
 </html>

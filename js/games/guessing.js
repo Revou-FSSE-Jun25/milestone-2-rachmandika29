@@ -9,6 +9,7 @@ class NumberGuessingGame {
         this.initializeElements();
         this.initializeGame();
         this.bindEvents();
+        this.renderLeaderboard();
     }
 
     initializeElements() {
@@ -220,6 +221,14 @@ class NumberGuessingGame {
         this.gameOverMessage.innerHTML = message;
         this.gameContainer.classList.add('hidden');
         this.gameOverContainer.classList.remove('hidden');
+        
+        // Submit to leaderboard if won
+        if (won) {
+            const attemptsUsed = this.maxAttempts - this.attempts;
+            setTimeout(() => {
+                this.submitToLeaderboard(attemptsUsed);
+            }, 1500);
+        }
     }
 
     calculateRating(attempts) {
@@ -241,9 +250,68 @@ class NumberGuessingGame {
         this.gameContainer.classList.remove('hidden');
         this.gameOverContainer.classList.add('hidden');
     }
+    
+    // Render leaderboard
+    renderLeaderboard() {
+        if (typeof gameLeaderboard !== 'undefined' && gameLeaderboard && gameLeaderboard.isInitialized) {
+            gameLeaderboard.renderLeaderboard('numguess', 'numguess-leaderboard', 'Number Guessing Leaderboard');
+        } else {
+            // Retry after a short delay if leaderboard isn't ready
+            setTimeout(() => this.renderLeaderboard(), 100);
+        }
+    }
+    
+    // Submit score to leaderboard
+    submitToLeaderboard(attemptsUsed) {
+        if (typeof gameLeaderboard !== 'undefined' && gameLeaderboard && gameLeaderboard.isInitialized) {
+            gameLeaderboard.showScoreSubmission('numguess', attemptsUsed, () => {
+                this.renderLeaderboard();
+            });
+        }
+    }
 }
 
-// Initialize game when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new NumberGuessingGame();
-});
+// Game instance holder
+let gameInstance = null;
+
+/**
+ * Initialize the Number Guessing Game
+ * @param {Object} options - Configuration options
+ * @returns {Object} Game instance and control methods
+ */
+function initializeNumberGuessingGame(options = {}) {
+    const config = {
+        enableDebug: false,
+        maxAttempts: 10,
+        ...options
+    };
+
+    // Only initialize if we're on the number guessing page
+    const guessInput = document.getElementById('guessInput');
+    if (!guessInput) {
+        return null;
+    }
+
+    try {
+        gameInstance = new NumberGuessingGame();
+        
+        if (config.enableDebug) {
+            console.log('Number Guessing Game initialized successfully');
+        }
+
+        return {
+            instance: gameInstance,
+            isInitialized: true,
+            destroy: () => {
+                if (gameInstance) {
+                    gameInstance = null;
+                }
+            }
+        };
+    } catch (error) {
+        console.error('Error initializing Number Guessing Game:', error);
+        return null;
+    }
+}
+
+export { NumberGuessingGame, initializeNumberGuessingGame };
