@@ -143,12 +143,51 @@
         <h2 class="text-4xl mb-6 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">
           >> GAME MODULES
         </h2>
-        <p class="mb-4 text-xl leading-relaxed">
-          SCANNING AVAILABLE GAME LIBRARIES...
-        </p>
-        <p class="text-xl leading-relaxed">
-          STATUS: READY FOR EXECUTION
-        </p>
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Clicker Game Preview -->
+          <div class="border border-terminal-green p-6 bg-terminal-green-alpha">
+            <h3 class="text-2xl mb-4 text-terminal-green-bright terminal-glow-bright">>> CLICKER MODULE</h3>
+            <p class="mb-3 text-lg leading-relaxed">
+              TYPE: INCREMENTAL CLICKING SIMULATION
+            </p>
+            <p class="mb-3 text-lg leading-relaxed">
+              OBJECTIVE: MAXIMIZE CLICK EFFICIENCY
+            </p>
+            <p class="mb-4 text-lg leading-relaxed">
+              DURATION: 30 SECONDS
+            </p>
+            <button 
+              onclick="window.open('pages/clicker.html', '_blank')"
+              class="bg-transparent border-2 border-terminal-green text-terminal-green px-4 py-2 text-lg font-normal transition-all duration-300 hover:bg-terminal-green-alpha-hover hover:text-terminal-green-bright terminal-glow-hover w-full">
+              [LAUNCH_CLICKER]
+            </button>
+          </div>
+          
+          <!-- Number Guessing Game Preview -->
+          <div class="border border-terminal-green p-6 bg-terminal-green-alpha">
+            <h3 class="text-2xl mb-4 text-terminal-green-bright terminal-glow-bright">>> GUESSING MODULE</h3>
+            <p class="mb-3 text-lg leading-relaxed">
+              TYPE: LOGICAL DEDUCTION CHALLENGE
+            </p>
+            <p class="mb-3 text-lg leading-relaxed">
+              OBJECTIVE: IDENTIFY TARGET NUMBER
+            </p>
+            <p class="mb-4 text-lg leading-relaxed">
+              FEATURES: HINT SYSTEM, SCORING
+            </p>
+            <button 
+              onclick="window.open('pages/numguess.html', '_blank')"
+              class="bg-transparent border-2 border-terminal-green text-terminal-green px-4 py-2 text-lg font-normal transition-all duration-300 hover:bg-terminal-green-alpha-hover hover:text-terminal-green-bright terminal-glow-hover w-full">
+              [LAUNCH_GUESSING]
+            </button>
+          </div>
+        </div>
+        
+        <div class="mt-6 text-center">
+          <p class="text-xl leading-relaxed text-terminal-green-dim">
+            STATUS: BOTH MODULES OPERATIONAL
+          </p>
+        </div>
       </section>
       
       <section id="tech-stack" class="mb-16 p-8 border-2 border-terminal-green bg-terminal-green-alpha relative">
@@ -163,7 +202,7 @@
           GRAPHICS: HTML5
         </p>
         <p class="text-xl leading-relaxed">
-          INTERFACE: Tailwin CSS Classes
+          INTERFACE: Tailwind CSS Classes
         </p>
       </section>
     </main>
