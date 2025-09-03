@@ -252,3 +252,4 @@ mainkeun-landing-page/
 The website will be deployed on
 - **Vercel**: Fast deployment with automatic HTTPS
 - **Hostinger Shared Hosting**: For full stable hosting enviornment.
+- Can be accessed from [http://mainkeun.dikadikadika.com/]
