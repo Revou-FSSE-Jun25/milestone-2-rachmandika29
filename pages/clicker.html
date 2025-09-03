@@ -36,54 +36,53 @@
 
     <!-- Main Game Container -->
     <main class="py-10 px-5 max-w-7xl mx-auto">
-        <div class="clicker-container grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="clicker-container grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-12rem)] min-h-[600px]">
             
-            <!-- Left Panel: Stats and Info -->
+            <!-- Left Panel: Game Controls and Stats -->
             <aside class="lg:col-span-1 space-y-6">
                 <!-- Game Stats -->
-                <section class="stats-panel p-8 border-2 border-terminal-green bg-terminal-green-alpha relative" aria-labelledby="stats-title">
+                <section class="stats-panel p-6 border-2 border-terminal-green bg-terminal-green-alpha relative" aria-labelledby="stats-title">
                     <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[STATS]</div>
-                    <h2 id="stats-title" class="text-3xl mb-6 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">>> GAME STATISTICS</h2>
-                    <div class="space-y-4">
-                        <div class="stat-item text-xl">
+                    <h2 id="stats-title" class="text-2xl mb-4 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">>> GAME STATISTICS</h2>
+                    <div class="space-y-3">
+                        <div class="stat-item text-lg">
                             <span class="text-terminal-green">COOKIES:</span>
-                            <span id="totalScore" class="text-2xl font-bold text-terminal-green-bright ml-2 terminal-glow" aria-live="polite">0</span>
+                            <span id="totalScore" class="text-xl font-bold text-terminal-green-bright ml-2 terminal-glow" aria-live="polite">0</span>
                         </div>
-                        <div class="stat-item text-xl">
+                        <div class="stat-item text-lg">
                             <span class="text-terminal-green">TIME_REMAINING:</span>
-                            <span id="timeRemaining" class="text-xl font-semibold text-terminal-green-bright ml-2 terminal-glow" aria-live="polite">1:00</span>
+                            <span id="timeRemaining" class="text-lg font-semibold text-terminal-green-bright ml-2 terminal-glow" aria-live="polite">1:00</span>
                         </div>
-                        <div class="stat-item text-xl">
+                        <div class="stat-item text-lg">
                             <span class="text-terminal-green">TOTAL_CLICKS:</span>
                             <span id="totalClicks" class="text-lg text-terminal-green-bright ml-2" aria-live="polite">0</span>
                         </div>
-                        <div class="stat-item text-xl">
+                        <div class="stat-item text-lg">
                             <span class="text-terminal-green">CLICK_POWER:</span>
                             <span id="clickPower" class="text-lg text-terminal-green-bright ml-2" aria-live="polite">1</span>
                         </div>
                     </div>
                 </section>
 
-                <!-- Left Panel: Game Controls -->
-            <aside class="lg:col-span-1">
-                <section class="game-controls p-8 border-2 border-terminal-green bg-terminal-green-alpha relative" aria-labelledby="controls-title">
+                <!-- Game Controls -->
+                <section class="game-controls p-6 border-2 border-terminal-green bg-terminal-green-alpha relative" aria-labelledby="controls-title">
                     <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[CONTROLS]</div>
-                    <h2 id="controls-title" class="text-3xl mb-6 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">>> GAME CONTROLS</h2>
+                    <h2 id="controls-title" class="text-2xl mb-4 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">>> GAME CONTROLS</h2>
                     
                     <div class="space-y-4">
                         <div class="text-center">
                             <div class="text-sm text-terminal-green-dim mb-2">GAME STATUS</div>
-                            <div id="gameStatus" class="text-xl font-bold text-terminal-green-bright terminal-glow">READY_TO_START</div>
+                            <div id="gameStatus" class="text-lg font-bold text-terminal-green-bright terminal-glow">READY_TO_START</div>
                         </div>
                         
                         <button id="startButton" 
-                                class="w-full py-3 px-6 bg-terminal-green text-black font-bold text-xl tracking-wider hover:bg-terminal-green-bright transition-colors duration-200 border-2 border-terminal-green-bright"
+                                class="w-full py-3 px-4 bg-terminal-green text-black font-bold text-lg tracking-wider hover:bg-terminal-green-bright transition-colors duration-200 border-2 border-terminal-green-bright"
                                 aria-label="Start the game">
                             [START_GAME]
                         </button>
                         
                         <button id="resetButton" 
-                                class="w-full py-3 px-6 bg-red-600 text-white font-bold text-xl tracking-wider hover:bg-red-700 transition-colors duration-200 border-2 border-red-400"
+                                class="w-full py-3 px-4 bg-red-600 text-white font-bold text-lg tracking-wider hover:bg-red-700 transition-colors duration-200 border-2 border-red-400"
                                 aria-label="Reset the game">
                             [RESET_GAME]
                         </button>
@@ -93,19 +92,19 @@
 
             <!-- Center Panel: Main Clicker -->
             <section class="lg:col-span-1 flex flex-col items-center justify-center">
-                <div class="clicker-zone text-center p-8 border-2 border-terminal-green bg-terminal-green-alpha relative">
+                <div class="clicker-zone text-center p-6 border-2 border-terminal-green bg-terminal-green-alpha relative w-full h-full flex flex-col justify-center">
                     <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[CLICKER]</div>
-                    <h1 class="text-4xl font-bold mb-8 text-terminal-green-bright terminal-glow-bright tracking-wider">>> COOKIE FACTORY</h1>
+                    <h1 class="text-3xl font-bold mb-6 text-terminal-green-bright terminal-glow-bright tracking-wider">>> COOKIE FACTORY</h1>
                     
                     <!-- Main Cookie Button -->
-                    <div class="cookie-container relative">
+                    <div class="cookie-container relative flex-1 flex items-center justify-center">
                         <button id="mainClicker" 
-                                class="main-clicker w-64 h-64 bg-gradient-to-br from-cookie-primary to-cookie-secondary rounded-full shadow-2xl transform transition-all duration-150 hover:scale-105 active:scale-95 focus:outline-none border-4 border-terminal-green"
+                                class="main-clicker w-48 h-48 bg-gradient-to-br from-cookie-primary to-cookie-secondary rounded-full shadow-2xl transform transition-all duration-150 hover:scale-105 active:scale-95 focus:outline-none border-4 border-terminal-green"
                                 aria-label="Click to get cookies"
                                 role="button"
                                 tabindex="0">
                             <!-- Cookie SVG -->
-                            <svg class="w-48 h-48 mx-auto" viewBox="0 0 200 200" fill="none">
+                            <svg class="w-36 h-36 mx-auto" viewBox="0 0 200 200" fill="none">
                                 <circle cx="100" cy="100" r="90" fill="#D2691E" stroke="#8B4513" stroke-width="4"/>
                                 <!-- Chocolate chips -->
                                 <circle cx="70" cy="80" r="8" fill="#654321"/>
@@ -123,33 +122,22 @@
                     </div>
                     
                     <!-- Click Instructions -->
-                    <p class="mt-6 text-terminal-green text-xl tracking-wider">[CLICK_AS_FAST_AS_YOU_CAN_IN_60_SECONDS]</p>
+                    <p class="mt-4 text-terminal-green text-lg tracking-wider">[CLICK_AS_FAST_AS_YOU_CAN_IN_60_SECONDS]</p>
                 </div>
             </section>
 
             <!-- Right Panel: Leaderboard -->
             <aside class="lg:col-span-1">
-                <section class="leaderboard-section p-8 border-2 border-terminal-green bg-terminal-green-alpha relative" aria-labelledby="leaderboard-title">
+                <section class="leaderboard-section p-6 border-2 border-terminal-green bg-terminal-green-alpha relative h-full" aria-labelledby="leaderboard-title">
                     <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[LEADERBOARD]</div>
-                    <h2 id="leaderboard-title" class="text-3xl mb-6 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">>> HIGH SCORES</h2>
+                    <h2 id="leaderboard-title" class="text-2xl mb-4 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">>> HIGH SCORES</h2>
                     <div id="clicker-leaderboard" class="space-y-3 max-h-96 overflow-y-auto text-lg" role="list">
                         <!-- Leaderboard will be populated by JavaScript -->
                     </div>
                 </section>
             </aside>
         </div>
-
-        <!-- Leaderboard Section -->
-        <div class="mt-8">
-            <div id="clicker-leaderboard"></div>
-        </div>
     </main>
-
-    <!-- Achievement Notification -->
-    <div id="achievement-notification" class="fixed top-4 right-4 terminal-border bg-black p-4 transform translate-x-full transition-transform duration-300 z-50 hidden">
-        <div class="terminal-text terminal-green-bright font-bold" id="achievement-title"></div>
-        <div class="terminal-text" id="achievement-description"></div>
-    </div>
 
 </body>
 </html>
