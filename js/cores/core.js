@@ -36,8 +36,6 @@ export const CONSTANTS = {
 
 // ===== CONFIGURATION =====
 export const CONFIG = {
-    // Debug mode
-    DEBUG: false,
     
     // Animation settings
     animations: {
