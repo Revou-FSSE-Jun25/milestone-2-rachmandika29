@@ -39,10 +39,10 @@ class NumberGuessingGame {
         this.hideFeedback();
         this.hidePreviousGuesses();
         
-        // Terminal boot sequence
+        /* Terminal boot sequence */
         this.showTerminalMessage('SYSTEM INITIALIZED. RANDOM NUMBER GENERATED.', 'success');
         
-        console.log('Debug: Target number is', this.targetNumber); // Remove in production
+        console.log('Debug: Target number is', this.targetNumber); /* Remove in production */
     }
 
     bindEvents() {
@@ -54,7 +54,7 @@ class NumberGuessingGame {
         });
         this.resetBtn.addEventListener('click', () => this.initializeGame());
         
-        // Focus input on load
+        /* Focus input on load */
         this.guessInput.focus();
     }
 
@@ -251,17 +251,17 @@ class NumberGuessingGame {
         this.gameOverContainer.classList.add('hidden');
     }
     
-    // Render leaderboard
+    /* Render leaderboard */
     renderLeaderboard() {
         if (typeof gameLeaderboard !== 'undefined' && gameLeaderboard && gameLeaderboard.isInitialized) {
             gameLeaderboard.renderLeaderboard('numguess', 'numguess-leaderboard', 'Number Guessing Leaderboard');
         } else {
-            // Retry after a short delay if leaderboard isn't ready
+            /* Retry after a short delay if leaderboard isn't ready */
             setTimeout(() => this.renderLeaderboard(), 100);
         }
     }
     
-    // Submit score to leaderboard
+    /* Submit score to leaderboard */
     submitToLeaderboard(attemptsUsed) {
         if (typeof gameLeaderboard !== 'undefined' && gameLeaderboard && gameLeaderboard.isInitialized) {
             gameLeaderboard.showScoreSubmission('numguess', attemptsUsed, () => {
@@ -271,14 +271,10 @@ class NumberGuessingGame {
     }
 }
 
-// Game instance holder
+/* Game instance holder */
 let gameInstance = null;
 
-/**
- * Initialize the Number Guessing Game
- * @param {Object} options - Configuration options
- * @returns {Object} Game instance and control methods
- */
+/* Initialize the Number Guessing Game */
 function initializeNumberGuessingGame(options = {}) {
     const config = {
         enableDebug: false,
@@ -286,7 +282,7 @@ function initializeNumberGuessingGame(options = {}) {
         ...options
     };
 
-    // Only initialize if we're on the number guessing page
+    /* Only initialize if we're on the number guessing page */
     const guessInput = document.getElementById('guessInput');
     if (!guessInput) {
         return null;
