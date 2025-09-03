@@ -7,14 +7,13 @@
 
 /* Scanline effect */
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    linear-gradient(transparent 50%, rgba(0, 255, 65, 0.03) 50%),
+  background: linear-gradient(transparent 50%, rgba(0, 255, 65, 0.03) 50%),
     linear-gradient(90deg, transparent 50%, rgba(0, 255, 65, 0.03) 50%);
   background-size: 100% 4px, 4px 100%;
   pointer-events: none;
@@ -23,20 +22,30 @@ body::before {
 
 /* Cursor animation */
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 
 .terminal-cursor::after {
-  content: '_';
+  content: "_";
   animation: blink 1s infinite;
   color: var(--terminal-green-bright);
 }
 
 /* Typing animation */
 @keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 .terminal-typing {
@@ -57,43 +66,43 @@ body::before {
   --cookie-primary: var(--terminal-green-bright);
   --cookie-secondary: var(--terminal-green);
   --cookie-highlight: var(--terminal-green-dim);
-  --gold-color: #FFD700;
-  --success-color: #10B981;
-  --danger-color: #EF4444;
-  --warning-color: #F59E0B;
+  --gold-color: #ffd700;
+  --success-color: #10b981;
+  --danger-color: #ef4444;
+  --warning-color: #f59e0b;
 }
 
 /* Clicker button styles */
 .main-clicker {
   position: relative;
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 
-    0 10px 25px rgba(210, 105, 30, 0.3),
-    0 0 0 1px rgba(210, 105, 30, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 25px rgba(210, 105, 30, 0.3),
+    0 0 0 1px rgba(210, 105, 30, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .main-clicker:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 
-    0 15px 35px rgba(210, 105, 30, 0.4),
-    0 0 0 1px rgba(210, 105, 30, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 15px 35px rgba(210, 105, 30, 0.4),
+    0 0 0 1px rgba(210, 105, 30, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .main-clicker:active {
   transform: translateY(1px) scale(0.98);
-  box-shadow: 
-    0 5px 15px rgba(210, 105, 30, 0.3),
-    0 0 0 1px rgba(210, 105, 30, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 5px 15px rgba(210, 105, 30, 0.3),
+    0 0 0 1px rgba(210, 105, 30, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 /* Pulse animation */
 @keyframes cookiePulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .main-clicker:focus {
@@ -119,7 +128,11 @@ body::before {
 
 /* Stats panel */
 .stats-panel {
-  background: linear-gradient(135deg, rgba(31, 41, 55, 0.9), rgba(17, 24, 39, 0.9));
+  background: linear-gradient(
+    135deg,
+    rgba(31, 41, 55, 0.9),
+    rgba(17, 24, 39, 0.9)
+  );
   border: 1px solid rgba(75, 85, 99, 0.3);
   backdrop-filter: blur(10px);
 }
@@ -140,15 +153,17 @@ body::before {
   padding-left: 0.75rem;
 }
 
-
-
-
-
 /* Number animations */
 @keyframes numberPop {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .number-update {
@@ -163,7 +178,7 @@ body::before {
 }
 
 .game-controls button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -184,22 +199,18 @@ body::before {
   transform: scale(0.95);
 }
 
-
-
-
-
 /* Responsive design */
 @media (max-width: 1024px) {
   .clicker-container {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .main-clicker {
     width: 200px;
     height: 200px;
   }
-  
+
   .main-clicker svg {
     width: 150px;
     height: 150px;
@@ -211,12 +222,12 @@ body::before {
     width: 160px;
     height: 160px;
   }
-  
+
   .main-clicker svg {
     width: 120px;
     height: 120px;
   }
-  
+
   .stats-panel,
   .upgrades-shop,
   .achievements-panel {
@@ -226,8 +237,12 @@ body::before {
 
 /* Loading spinner */
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .loading-spinner {
@@ -240,15 +255,13 @@ body::before {
   margin: 0 auto;
 }
 
-
-
 /* SVG hover effects */
 .main-clicker svg circle {
   transition: all 0.2s ease;
 }
 
 .main-clicker:hover svg circle:first-child {
-  fill: #E2761E;
+  fill: #e2761e;
 }
 
 /* Accessibility */
@@ -271,7 +284,7 @@ body::before {
     animation: none;
     transition: none;
   }
-  
+
   .main-clicker:hover {
     transform: none;
   }
