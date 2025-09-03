@@ -1,4 +1,4 @@
-import { CONSTANTS, DOM, Events, Utils, Animation } from '../cores/core.js';
+import { CONSTANTS, DOM, Events, Utils } from '../cores/core.js';
 
 /**
  * MobileNavigation class to handle mobile menu functionality
@@ -133,7 +133,8 @@ class MobileNavigation {
      */
     openMobileMenu() {
         // Show mobile menu
-        Animation.fadeIn(this.elements.mobileMenu);
+        this.elements.mobileMenu.classList.remove('hidden');
+        this.elements.mobileMenu.classList.add('animate-fade-in');
         
         // Animate hamburger to X
         this.animateHamburgerToX();
@@ -152,7 +153,8 @@ class MobileNavigation {
      */
     closeMobileMenu() {
         // Hide mobile menu
-        Animation.fadeOut(this.elements.mobileMenu);
+        this.elements.mobileMenu.classList.add('hidden');
+        this.elements.mobileMenu.classList.remove('animate-fade-in');
         
         // Reset hamburger lines
         this.resetHamburgerLines();
@@ -212,7 +214,7 @@ class MobileNavigation {
      */
     handleWindowResize() {
         // Close mobile menu if window becomes large (desktop size)
-        if (!Utils.isMobile() && this.isMenuOpen) {
+        if (window.innerWidth >= CONSTANTS.MOBILE_BREAKPOINT && this.isMenuOpen) {
             this.toggleMobileMenu();
         }
     }
