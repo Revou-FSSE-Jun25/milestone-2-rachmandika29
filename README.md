@@ -223,7 +223,6 @@ RevoFun-landing-page/
   - Utility functions with smooth scrolling and form validation
   - Leaderboard system with cross-game compatibility
   - Individual game instances (Cookie Clicker, Number Guessing & Rock Paper Scissors)
-- **Code Optimization**: Recently ed and streamlined core.js removing unused constants, configurations, and utility functions
 
 ### Initialization Flow:
 1. **DOM Ready**: Application starts when DOM content is loaded
