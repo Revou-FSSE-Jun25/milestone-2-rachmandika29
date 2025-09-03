@@ -63,7 +63,7 @@ The landing page consists of 5 main pages:
 
 ## 🎯 Featured Games
 
-The website showcases two fully-functional JavaScript-based games with integrated leaderboard systems:
+The website showcases three fully-functional JavaScript-based games with integrated leaderboard systems:
 
 ### 1. Cookie Clicker Game
 - **Description**: A fast-paced 30-second clicking challenge with terminal aesthetics
@@ -88,6 +88,18 @@ The website showcases two fully-functional JavaScript-based games with integrate
   - **Leaderboard Integration**: Score submission based on attempts used (lower is better)
   - **Terminal Aesthetics**: Complete VT320 terminal simulation with boot sequences
 
+### 3. Rock Paper Scissors Game
+- **Description**: A classic Rock Paper Scissors game with terminal-style interface and strategic gameplay
+- **Core Features**:
+  - **Classic Gameplay**: Traditional Rock, Paper, Scissors mechanics with computer opponent
+  - **Smart AI**: Intelligent computer opponent with randomized choices
+  - **Game Statistics**: Real-time tracking of player wins, computer wins, and total games
+  - **Win Rate Calculation**: Dynamic win percentage display with performance metrics
+  - **Battle Visualization**: Visual representation of player vs computer choices
+  - **Game History**: Complete history of all rounds with outcomes
+  - **Terminal Interface**: Authentic VT320 terminal styling with green phosphor aesthetics
+  - **Responsive Design**: Optimized layout for both desktop and mobile devices
+
 ## 📁 Project Structure
 
 ```
@@ -98,7 +110,8 @@ RevoFun-landing-page/
 │   ├── about.html         # About us page
 │   ├── contact.html       # Contact page
 │   ├── clicker.html       # Cookie Clicker game page
-│   └── numguess.html      # Number Guessing game page
+│   ├── numguess.html      # Number Guessing game page
+│   └── rockpaperscissor.html # Rock Paper Scissors game page
 ├── js/
 │   ├── main.js            # Application entry point and module initialization
 │   ├── cores/
@@ -109,6 +122,7 @@ RevoFun-landing-page/
 │   └── games/
 │       ├── clicker.js     # Cookie Clicker game logic and mechanics
 │       ├── guessing.js    # Number Guessing game logic and mechanics
+│       ├── rockpaperscissor.js # Rock Paper Scissors game logic and mechanics
 │       └── leaderboard.js # Leaderboard system and score management
 ├── css/
 │   └── main.css           # Tailwind CSS and custom terminal styling
@@ -148,14 +162,36 @@ RevoFun-landing-page/
 - **Game Flow**: Initialize → Guess Loop → Win/Lose → Leaderboard (if won) → Reset
 - **Leaderboard Integration**: Score submission based on attempts used (lower attempts = better score)
 
+### Rock Paper Scissors Game Logic:
+- **Game Initialization**: Clean game state with zero scores and empty game history
+- **Choice Selection**: 
+  - Player choice via button clicks (Rock, Paper, Scissors)
+  - Computer choice via random generation with equal probability
+  - Visual feedback for selected choices with terminal-style highlighting
+- **Game Mechanics**: 
+  - Classic rules implementation (Rock beats Scissors, Paper beats Rock, Scissors beats Paper)
+  - Tie detection and handling
+  - Immediate result calculation and display
+- **Statistics Management**: 
+  - Real-time score tracking (Player wins, Computer wins, Total games)
+  - Win rate percentage calculation with dynamic updates
+  - Game history with complete round-by-round results
+- **Visual Battle System**: 
+  - Player vs Computer choice display with terminal aesthetics
+  - Result announcement with color-coded outcomes (green for win, red for loss, yellow for tie)
+  - Animated feedback for game results
+- **Game Flow**: Initialize → Player Choice → Computer Choice → Result Calculation → Statistics Update → History Update → Ready for Next Round
+- **Terminal Interface**: Complete VT320 terminal styling with green phosphor effects and authentic terminal messaging
+
 ## 📊 Advanced Leaderboard System
 
 ### Core Features:
-- **Game-Specific Rankings**: Separate leaderboards for Cookie Clicker and Number Guessing
+- **Game-Specific Rankings**: Separate leaderboards for Cookie Clicker, Number Guessing, and Rock Paper Scissors
 - **Local Storage**: Persistent score storage using browser localStorage with "leaderboard_" prefix
 - **Smart Scoring**: 
   - Cookie Clicker: Higher scores ranked first (descending order)
   - Number Guessing: Lower attempts ranked first (ascending order)
+  - Rock Paper Scissors: Higher win rates ranked first (descending order)
 - **Top 10 Tracking**: Maximum 10 entries per game with automatic pruning
 - **Score Validation**: New record detection and qualification checking
 
@@ -186,7 +222,7 @@ RevoFun-landing-page/
   - Navigation system with mobile menu support and direct DOM manipulation
   - Utility functions with smooth scrolling and form validation
   - Leaderboard system with cross-game compatibility
-  - Individual game instances (Cookie Clicker & Number Guessing)
+  - Individual game instances (Cookie Clicker, Number Guessing & Rock Paper Scissors)
 - **Code Optimization**: Recently ed and streamlined core.js removing unused constants, configurations, and utility functions
 
 ### Initialization Flow:
