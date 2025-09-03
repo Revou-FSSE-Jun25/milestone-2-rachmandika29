@@ -145,20 +145,11 @@ class Leaderboard {
     /* Format score display based on game type */
     formatScore(gameType, score) {
         if (gameType === 'clicker') {
-            return this.formatNumber(score) + ' cookies';
+            return Utils.formatNumber(score) + ' cookies';
         } else if (gameType === 'numguess') {
             return score + ' attempt' + (score !== 1 ? 's' : '');
         }
         return score.toString();
-    }
-
-    /* Format large numbers with K/M/B/T suffixes */
-    formatNumber(num) {
-        if (num >= 1e12) return (num / 1e12).toFixed(2) + 'T';
-        if (num >= 1e9) return (num / 1e9).toFixed(2) + 'B';
-        if (num >= 1e6) return (num / 1e6).toFixed(2) + 'M';
-        if (num >= 1e3) return (num / 1e3).toFixed(2) + 'K';
-        return Math.floor(num).toLocaleString();
     }
 
     /* Format date for display */
