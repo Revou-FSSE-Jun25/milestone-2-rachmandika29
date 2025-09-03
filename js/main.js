@@ -1,7 +1,10 @@
 /* Application entry point */
 
 /* Core imports */
-import { initializeCore, CONFIG, Utils } from "./cores/core.js";
+import { initializeCore, Utils } from "./cores/core.js";
+
+/* Debug configuration */
+const DEBUG_ENABLED = false; // Set to true to enable debug features
 
 /* Feature imports */
 import { initializeNavigation } from "./navigation/navigation.js";
@@ -57,16 +60,16 @@ class Application {
       /* Initialize leaderboard */
       this.modules.leaderboard = initializeLeaderboard({
         maxEntries: 10,
-        enableDebug: CONFIG.DEBUG,
+        enableDebug: DEBUG_ENABLED,
       });
 
       /* Initialize games */
       this.modules.cookieClicker = initializeCookieClicker({
-        enableDebug: CONFIG.DEBUG,
+        enableDebug: DEBUG_ENABLED,
       });
 
       this.modules.numberGuessing = initializeNumberGuessingGame({
-        enableDebug: CONFIG.DEBUG,
+        enableDebug: DEBUG_ENABLED,
       });
 
       /* Global module access */
@@ -147,7 +150,7 @@ function initializeApplication() {
   app.initialize();
 
   /* Global debug access */
-  if (CONFIG.DEBUG) {
+  if (DEBUG_ENABLED) {
     window.MainkeunApp = app;
   }
 

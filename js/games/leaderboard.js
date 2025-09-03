@@ -1,7 +1,7 @@
 /* Leaderboard System for Games */
 
 /* Import core functionality */
-import { DOM, Events, Utils, CONFIG } from '../cores/core.js';
+import { DOM, Events, Utils } from '../cores/core.js';
 import { StorageManager } from '../cores/utils.js';
 
 /* Leaderboard class */
@@ -10,7 +10,7 @@ class Leaderboard {
         this.options = {
             storageKey: 'gameLeaderboards',
             maxEntries: 10,
-            enableDebug: CONFIG.DEBUG,
+            enableDebug: false, // Set to true to enable debug logging
             ...options
         };
         

@@ -1,7 +1,7 @@
 /* Number Guessing Game */
 
 /* Import core functionality */
-import { DOM, Utils, CONFIG } from '../cores/core.js';
+import { DOM, Utils } from '../cores/core.js';
 
 class NumberGuessingGame {
     constructor() {
@@ -282,7 +282,7 @@ let gameInstance = null;
 /* Initialize the Number Guessing Game */
 function initializeNumberGuessingGame(options = {}) {
     const config = {
-        enableDebug: CONFIG.DEBUG,
+        enableDebug: false, // Set to true to enable debug logging
         maxAttempts: 10,
         ...options
     };

@@ -2,8 +2,6 @@
 export const CONSTANTS = {
   /* Breakpoints */
   MOBILE_BREAKPOINT: 768,
-  /* Animation durations */
-  ANIMATION_DURATION: 300,
 
   /* Aria attributes */
   ARIA: {
@@ -11,15 +9,15 @@ export const CONSTANTS = {
   },
 };
 
-/* Configuration */
-export const CONFIG = {};
+/* Debug configuration */
+const DEBUG_ENABLED = false; // Set to true to enable debug logging
 
 /* DOM utilities */
 export const DOM = {
   /* Get element by ID */
   getElementById(id) {
     const element = document.getElementById(id);
-    if (!element && CONFIG.DEBUG) {
+    if (!element && DEBUG_ENABLED) {
       console.warn(`Element with ID '${id}' not found`);
     }
     return element;
@@ -32,7 +30,7 @@ export const Events = {
   addEventListener(element, event, handler, options = {}) {
     if (element && typeof handler === "function") {
       element.addEventListener(event, handler, options);
-    } else if (CONFIG.DEBUG) {
+    } else if (DEBUG_ENABLED) {
       console.warn("Invalid element or handler for event listener");
     }
   },
@@ -62,7 +60,7 @@ export const Utils = {
 
   /* Debug logging */
   debug(message, data = null) {
-    if (CONFIG.DEBUG) {
+    if (DEBUG_ENABLED) {
       console.log(`[DEBUG] ${message}`, data || "");
     }
   },
@@ -86,14 +84,14 @@ export function initializeCore() {
 
   /* Global error handling */
   window.addEventListener("error", (event) => {
-    if (CONFIG.DEBUG) {
+    if (DEBUG_ENABLED) {
       console.error("Global error:", event.error);
     }
   });
 
   /* Unhandled promise rejection handling */
   window.addEventListener("unhandledrejection", (event) => {
-    if (CONFIG.DEBUG) {
+    if (DEBUG_ENABLED) {
       console.error("Unhandled promise rejection:", event.reason);
     }
   });
@@ -102,7 +100,6 @@ export function initializeCore() {
 /* Export default object */
 export default {
   CONSTANTS,
-  CONFIG,
   DOM,
   Events,
   Utils,
