@@ -1,3 +1,8 @@
+/* Number Guessing Game */
+
+/* Import core functionality */
+import { DOM, Utils, CONFIG } from '../cores/core.js';
+
 class NumberGuessingGame {
     constructor() {
         this.targetNumber = 0;
@@ -13,19 +18,19 @@ class NumberGuessingGame {
     }
 
     initializeElements() {
-        this.guessInput = document.getElementById('guessInput');
-        this.submitBtn = document.getElementById('submitBtn');
-        this.feedback = document.getElementById('feedback');
-        this.attemptsLeft = document.getElementById('attemptsLeft');
-        this.gameStatus = document.getElementById('gameStatus');
-        this.totalGuesses = document.getElementById('totalGuesses');
-        this.accuracy = document.getElementById('accuracy');
-        this.previousGuesses = document.getElementById('previousGuesses');
-        this.guessList = document.getElementById('guessList');
-        this.gameContainer = document.getElementById('gameContainer');
-        this.gameOverContainer = document.getElementById('gameOverContainer');
-        this.gameOverMessage = document.getElementById('gameOverMessage');
-        this.resetBtn = document.getElementById('resetBtn');
+        this.guessInput = DOM.getElementById('guessInput');
+        this.submitBtn = DOM.getElementById('submitBtn');
+        this.feedback = DOM.getElementById('feedback');
+        this.attemptsLeft = DOM.getElementById('attemptsLeft');
+        this.gameStatus = DOM.getElementById('gameStatus');
+        this.totalGuesses = DOM.getElementById('totalGuesses');
+        this.accuracy = DOM.getElementById('accuracy');
+        this.previousGuesses = DOM.getElementById('previousGuesses');
+        this.guessList = DOM.getElementById('guessList');
+        this.gameContainer = DOM.getElementById('gameContainer');
+        this.gameOverContainer = DOM.getElementById('gameOverContainer');
+        this.gameOverMessage = DOM.getElementById('gameOverMessage');
+        this.resetBtn = DOM.getElementById('resetBtn');
     }
 
     initializeGame() {
@@ -42,7 +47,7 @@ class NumberGuessingGame {
         /* Terminal boot sequence */
         this.showTerminalMessage('SYSTEM INITIALIZED. RANDOM NUMBER GENERATED.', 'success');
         
-        console.log('Debug: Target number is', this.targetNumber); /* Remove in production */
+        Utils.debug('Target number is', this.targetNumber);
     }
 
     bindEvents() {
@@ -277,13 +282,13 @@ let gameInstance = null;
 /* Initialize the Number Guessing Game */
 function initializeNumberGuessingGame(options = {}) {
     const config = {
-        enableDebug: false,
+        enableDebug: CONFIG.DEBUG,
         maxAttempts: 10,
         ...options
     };
 
     /* Only initialize if we're on the number guessing page */
-    const guessInput = document.getElementById('guessInput');
+    const guessInput = DOM.getElementById('guessInput');
     if (!guessInput) {
         return null;
     }
@@ -292,7 +297,7 @@ function initializeNumberGuessingGame(options = {}) {
         gameInstance = new NumberGuessingGame();
         
         if (config.enableDebug) {
-            console.log('Number Guessing Game initialized successfully');
+            Utils.debug('Number Guessing Game initialized successfully');
         }
 
         return {
@@ -305,7 +310,7 @@ function initializeNumberGuessingGame(options = {}) {
             }
         };
     } catch (error) {
-        console.error('Error initializing Number Guessing Game:', error);
+        Utils.debug('Error initializing Number Guessing Game:', error);
         return null;
     }
 }
