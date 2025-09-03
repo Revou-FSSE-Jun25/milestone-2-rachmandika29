@@ -1,4 +1,4 @@
-import { DOM, Events, Utils as CoreUtils, Animation } from './core.js';
+import { DOM, Events, Utils as CoreUtils } from './core.js';
 
 /* SmoothScroll class */
 class SmoothScroll {
@@ -68,7 +68,11 @@ class SmoothScroll {
                 behavior: scrollOptions.behavior
             });
         } else {
-            Animation.scrollToElement(element, scrollOptions);
+            element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            ...scrollOptions
+        });
         }
     }
     
