@@ -50,8 +50,8 @@
                             <span id="totalScore" class="text-2xl font-bold text-terminal-green-bright ml-2 terminal-glow" aria-live="polite">0</span>
                         </div>
                         <div class="stat-item text-xl">
-                            <span class="text-terminal-green">PER_SECOND:</span>
-                            <span id="cookiesPerSecond" class="text-xl font-semibold text-terminal-green-bright ml-2 terminal-glow" aria-live="polite">0</span>
+                            <span class="text-terminal-green">TIME_REMAINING:</span>
+                            <span id="timeRemaining" class="text-xl font-semibold text-terminal-green-bright ml-2 terminal-glow" aria-live="polite">1:00</span>
                         </div>
                         <div class="stat-item text-xl">
                             <span class="text-terminal-green">TOTAL_CLICKS:</span>
@@ -64,12 +64,29 @@
                     </div>
                 </section>
 
-                <!-- Achievements -->
-                <section class="achievements-panel p-8 border-2 border-terminal-green bg-terminal-green-alpha relative" aria-labelledby="achievements-title">
-                    <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[ACHIEVEMENTS]</div>
-                    <h2 id="achievements-title" class="text-3xl mb-6 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">>> UNLOCKED ACHIEVEMENTS</h2>
-                    <div id="achievementsList" class="space-y-3 max-h-64 overflow-y-auto text-lg" role="list">
-                        <!-- Achievements will be populated by JavaScript -->
+                <!-- Left Panel: Game Controls -->
+            <aside class="lg:col-span-1">
+                <section class="game-controls p-8 border-2 border-terminal-green bg-terminal-green-alpha relative" aria-labelledby="controls-title">
+                    <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[CONTROLS]</div>
+                    <h2 id="controls-title" class="text-3xl mb-6 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">>> GAME CONTROLS</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="text-center">
+                            <div class="text-sm text-terminal-green-dim mb-2">GAME STATUS</div>
+                            <div id="gameStatus" class="text-xl font-bold text-terminal-green-bright terminal-glow">READY_TO_START</div>
+                        </div>
+                        
+                        <button id="startButton" 
+                                class="w-full py-3 px-6 bg-terminal-green text-black font-bold text-xl tracking-wider hover:bg-terminal-green-bright transition-colors duration-200 border-2 border-terminal-green-bright"
+                                aria-label="Start the game">
+                            [START_GAME]
+                        </button>
+                        
+                        <button id="resetButton" 
+                                class="w-full py-3 px-6 bg-red-600 text-white font-bold text-xl tracking-wider hover:bg-red-700 transition-colors duration-200 border-2 border-red-400"
+                                aria-label="Reset the game">
+                            [RESET_GAME]
+                        </button>
                     </div>
                 </section>
             </aside>
@@ -106,17 +123,17 @@
                     </div>
                     
                     <!-- Click Instructions -->
-                    <p class="mt-6 text-terminal-green text-xl tracking-wider">[CLICK_TO_EARN_COOKIES]</p>
+                    <p class="mt-6 text-terminal-green text-xl tracking-wider">[CLICK_AS_FAST_AS_YOU_CAN_IN_60_SECONDS]</p>
                 </div>
             </section>
 
-            <!-- Right Panel: Upgrades Shop -->
+            <!-- Right Panel: Leaderboard -->
             <aside class="lg:col-span-1">
-                <section class="upgrades-shop p-8 border-2 border-terminal-green bg-terminal-green-alpha relative" aria-labelledby="shop-title">
-                    <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[SHOP]</div>
-                    <h2 id="shop-title" class="text-3xl mb-6 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">>> UPGRADE STORE</h2>
-                    <div id="upgradesList" class="space-y-4 max-h-96 overflow-y-auto text-lg" role="list">
-                        <!-- Upgrades will be populated by JavaScript -->
+                <section class="leaderboard-section p-8 border-2 border-terminal-green bg-terminal-green-alpha relative" aria-labelledby="leaderboard-title">
+                    <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[LEADERBOARD]</div>
+                    <h2 id="leaderboard-title" class="text-3xl mb-6 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">>> HIGH SCORES</h2>
+                    <div id="clicker-leaderboard" class="space-y-3 max-h-96 overflow-y-auto text-lg" role="list">
+                        <!-- Leaderboard will be populated by JavaScript -->
                     </div>
                 </section>
             </aside>
