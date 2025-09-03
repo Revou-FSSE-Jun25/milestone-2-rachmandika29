@@ -74,7 +74,7 @@ class CookieClickerGame {
       );
     }
 
-    // Reset button
+    /* Reset button */
     if (this.elements.resetButton) {
       this.elements.resetButton.addEventListener("click", () =>
         this.resetGame()
@@ -82,9 +82,9 @@ class CookieClickerGame {
     }
   }
 
-  // Handle cookie clicks
+  /* Handle clicks */
   handleClick(event) {
-    // Only allow clicks when game is active
+    /* Check game active */
     if (!this.gameState.gameActive) {
       if (!this.gameState.gameStarted) {
         this.startGame();
@@ -95,16 +95,16 @@ class CookieClickerGame {
     const clickValue = 1;
     this.gameState.cookies += clickValue;
 
-    // Create click effect
+    /* Create effect */
     this.createClickEffect(event, clickValue);
 
-    // Add click animation
+    /* Click animation */
     this.elements.mainClicker.style.transform = "scale(0.95)";
     setTimeout(() => {
       this.elements.mainClicker.style.transform = "scale(1)";
     }, 100);
 
-    // Update UI
+    /* Update UI */
     this.updateUI();
 
     Utils.logMessage(
@@ -112,7 +112,7 @@ class CookieClickerGame {
     );
   }
 
-  // Start the game
+  /* Start game */
   startGame() {
     this.gameState.gameActive = true;
     this.gameState.gameStarted = true;
@@ -125,7 +125,7 @@ class CookieClickerGame {
     Utils.logMessage("Cookie Clicker Game started!");
   }
 
-  // Reset the game
+  /* Reset game */
   resetGame() {
     this.gameState.gameActive = false;
     this.gameState.gameStarted = false;
@@ -141,7 +141,7 @@ class CookieClickerGame {
     Utils.logMessage("Cookie Clicker Game reset!");
   }
 
-  // Start the countdown timer
+  /* Start timer */
   startTimer() {
     if (this.gameTimer) {
       clearInterval(this.gameTimer);
@@ -157,7 +157,7 @@ class CookieClickerGame {
     }, 1000);
   }
 
-  // End the game and submit to leaderboard
+  /* End game */
   endGame() {
     this.gameState.gameActive = false;
 
@@ -168,7 +168,7 @@ class CookieClickerGame {
 
     this.updateUI();
 
-    // Submit to leaderboard
+    /* Submit to leaderboard */
     setTimeout(() => {
       this.submitToLeaderboard(this.gameState.cookies);
     }, 1000);
@@ -178,7 +178,7 @@ class CookieClickerGame {
     );
   }
 
-  // Create visual click effect
+  /* Create click effect */
   createClickEffect(event, value) {
     const effect = document.createElement("div");
     effect.className =
@@ -191,7 +191,7 @@ class CookieClickerGame {
 
     this.elements.clickEffects.appendChild(effect);
 
-    // Animate and remove
+    /* Animate and remove */
     setTimeout(() => {
       effect.style.opacity = "0";
       effect.style.transform = "translate(-50%, -100px)";
@@ -205,13 +205,13 @@ class CookieClickerGame {
     }, 1100);
   }
 
-  // Update UI elements
+  /* Update UI elements */
   updateUI() {
     this.elements.totalScore.textContent = Utils.formatNumber(
       this.gameState.cookies
     );
 
-    // Update timer display
+    /* Update timer */
     if (this.elements.timeRemaining) {
       const minutes = Math.floor(this.gameState.timeRemaining / 60);
       const seconds = this.gameState.timeRemaining % 60;
@@ -220,7 +220,7 @@ class CookieClickerGame {
         .padStart(2, "0")}`;
     }
 
-    // Update game status
+    /* Update status */
     if (this.elements.gameStatus) {
       if (!this.gameState.gameStarted) {
         this.elements.gameStatus.textContent = "CLICK_TO_START";
@@ -231,7 +231,7 @@ class CookieClickerGame {
       }
     }
 
-    // Update start button visibility
+    /* Update button visibility */
     if (this.elements.startButton) {
       this.elements.startButton.style.display = this.gameState.gameStarted
         ? "none"
@@ -239,7 +239,7 @@ class CookieClickerGame {
     }
   }
 
-  // Render leaderboard
+  /* Render leaderboard */
   renderLeaderboard() {
     if (
       typeof gameLeaderboard !== "undefined" &&
@@ -252,12 +252,12 @@ class CookieClickerGame {
         "Cookie Clicker Leaderboard"
       );
     } else {
-      // Retry after a short delay if leaderboard isn't ready
+      /* Retry if not ready */
       setTimeout(() => this.renderLeaderboard(), 100);
     }
   }
 
-  // Submit score to leaderboard
+  /* Submit score */
   submitToLeaderboard(finalScore) {
     if (
       typeof gameLeaderboard !== "undefined" &&
@@ -274,7 +274,7 @@ class CookieClickerGame {
     }
   }
 
-  // Cleanup when leaving the page
+  /* Cleanup on page leave */
   destroy() {
     if (this.gameTimer) {
       clearInterval(this.gameTimer);
@@ -282,14 +282,10 @@ class CookieClickerGame {
   }
 }
 
-// Game instance holder
+/* Game instance */
 let gameInstance = null;
 
-/**
- * Initialize the Cookie Clicker Game
- * @param {Object} options - Configuration options
- * @returns {Object} Game instance and control methods
- */
+/* Initialize Cookie Clicker Game */
 function initializeCookieClicker(options = {}) {
   const config = {
     enableDebug: false,
@@ -297,7 +293,7 @@ function initializeCookieClicker(options = {}) {
     ...options,
   };
 
-  // Only initialize if we're on the clicker page
+  /* Check if on clicker page */
   const mainClicker = document.getElementById("mainClicker");
   if (!mainClicker) {
     return null;
@@ -306,7 +302,7 @@ function initializeCookieClicker(options = {}) {
   try {
     gameInstance = new CookieClickerGame();
 
-    // Initialize the game
+    /* Initialize game */
     gameInstance
       .init()
       .then(() => {
@@ -318,7 +314,7 @@ function initializeCookieClicker(options = {}) {
         console.error("Failed to initialize Cookie Clicker Game:", error);
       });
 
-    // Setup cleanup on page unload
+    /* Setup cleanup */
     window.addEventListener("beforeunload", () => {
       if (gameInstance) {
         gameInstance.destroy();
