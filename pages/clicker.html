@@ -26,14 +26,14 @@
   <body
     class="font-['VT323'] bg-black text-terminal-green text-lg leading-relaxed overflow-x-hidden terminal-glow"
   >
-    <!-- Main Game Container -->
+
     <main class="py-10 px-5 max-w-7xl mx-auto">
       <div
         class="clicker-container grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-12rem)] min-h-[600px]"
       >
-        <!-- Left Panel: Game Controls and Stats -->
+
         <aside class="lg:col-span-1 space-y-6">
-          <!-- Game Stats -->
+
           <section
             class="stats-panel p-6 border-2 border-terminal-green bg-terminal-green-alpha relative"
             aria-labelledby="stats-title"
@@ -73,7 +73,7 @@
             </div>
           </section>
 
-          <!-- Game Controls -->
+
           <section
             class="game-controls p-6 border-2 border-terminal-green bg-terminal-green-alpha relative"
             aria-labelledby="controls-title"
@@ -122,7 +122,7 @@
           </section>
         </aside>
 
-        <!-- Center Panel: Main Clicker -->
+
         <section
           class="lg:col-span-1 flex flex-col items-center justify-center"
         >
@@ -140,7 +140,7 @@
               >> COOKIE FACTORY
             </h1>
 
-            <!-- Main Cookie Button -->
+
             <div
               class="cookie-container relative flex-1 flex items-center justify-center"
             >
@@ -151,7 +151,7 @@
                 role="button"
                 tabindex="0"
               >
-                <!-- Cookie SVG -->
+  
                 <svg
                   class="w-36 h-36 mx-auto"
                   viewBox="0 0 200 200"
@@ -165,7 +165,7 @@
                     stroke="#8B4513"
                     stroke-width="4"
                   />
-                  <!-- Chocolate chips -->
+    
                   <circle cx="70" cy="80" r="8" fill="#654321" />
                   <circle cx="130" cy="70" r="6" fill="#654321" />
                   <circle cx="85" cy="120" r="7" fill="#654321" />
@@ -176,7 +176,7 @@
                 </svg>
               </button>
 
-              <!-- Click Effect Container -->
+  
               <div
                 id="clickEffects"
                 class="absolute inset-0 pointer-events-none"
@@ -184,14 +184,14 @@
               ></div>
             </div>
 
-            <!-- Click Instructions -->
+
             <p class="mt-4 text-terminal-green text-lg tracking-wider">
               [CLICK_AS_FAST_AS_YOU_CAN_IN_30_SECONDS]
             </p>
           </div>
         </section>
 
-        <!-- Right Panel: Leaderboard -->
+
         <aside class="lg:col-span-1">
           <section
             class="leaderboard-section p-6 border-2 border-terminal-green bg-terminal-green-alpha relative h-full"
@@ -213,7 +213,7 @@
               class="space-y-3 max-h-96 overflow-y-auto text-lg"
               role="list"
             >
-              <!-- Leaderboard will be populated by JavaScript -->
+  
             </div>
           </section>
         </aside>
