@@ -282,12 +282,11 @@ let gameInstance = null;
 /* Initialize the Number Guessing Game */
 function initializeNumberGuessingGame(options = {}) {
     const config = {
-        enableDebug: false, // Set to true to enable debug logging
+        enableDebug: false, 
         maxAttempts: 10,
         ...options
     };
 
-    /* Only initialize if we're on the number guessing page */
     const guessInput = DOM.getElementById('guessInput');
     if (!guessInput) {
         return null;

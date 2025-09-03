@@ -10,7 +10,7 @@ export const CONSTANTS = {
 };
 
 /* Debug configuration */
-const DEBUG_ENABLED = false; // Set to true to enable debug logging
+const DEBUG_ENABLED = false; 
 
 /* DOM utilities */
 export const DOM = {

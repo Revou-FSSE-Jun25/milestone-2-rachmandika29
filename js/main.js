@@ -4,7 +4,7 @@
 import { initializeCore, Utils } from "./cores/core.js";
 
 /* Debug configuration */
-const DEBUG_ENABLED = false; // Set to true to enable debug features
+const DEBUG_ENABLED = false; 
 
 /* Feature imports */
 import { initializeNavigation } from "./navigation/navigation.js";

@@ -10,7 +10,7 @@ class Leaderboard {
         this.options = {
             storageKey: 'gameLeaderboards',
             maxEntries: 10,
-            enableDebug: false, // Set to true to enable debug logging
+            enableDebug: false, 
             ...options
         };
         
