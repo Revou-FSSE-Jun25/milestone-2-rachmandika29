@@ -9,7 +9,6 @@ class CookieClickerGame {
     this.gameState = {
       cookies: 0,
       totalClicks: 0,
-      clickPower: 1,
       timeRemaining: 30, 
       gameActive: false,
       gameStarted: false,
@@ -50,7 +49,6 @@ class CookieClickerGame {
       mainClicker: document.getElementById("mainClicker"),
       totalScore: document.getElementById("totalScore"),
       totalClicks: document.getElementById("totalClicks"),
-      clickPower: document.getElementById("clickPower"),
       timeRemaining: document.getElementById("timeRemaining"),
       gameStatus: document.getElementById("gameStatus"),
       startButton: document.getElementById("startButton"),
@@ -97,7 +95,7 @@ class CookieClickerGame {
       return;
     }
 
-    const clickValue = this.gameState.clickPower;
+    const clickValue = 1;
     this.gameState.cookies += clickValue;
     this.gameState.totalClicks++;
 
@@ -222,14 +220,11 @@ class CookieClickerGame {
     this.elements.totalClicks.textContent = Utils.formatNumber(
       this.gameState.totalClicks
     );
-    this.elements.clickPower.textContent = Utils.formatNumber(
-      this.gameState.clickPower
-    );
 
     // Update timer display
     if (this.elements.timeRemaining) {
-      const minutes = Math.floor(this.gameState.timeRemaining / 30);
-      const seconds = this.gameState.timeRemaining % 30;
+      const minutes = Math.floor(this.gameState.timeRemaining / 60);
+      const seconds = this.gameState.timeRemaining % 60;
       this.elements.timeRemaining.textContent = `${minutes}:${seconds
         .toString()
         .padStart(2, "0")}`;
