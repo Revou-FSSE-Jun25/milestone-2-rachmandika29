@@ -1,8 +1,6 @@
 import { DOM, Events, Utils as CoreUtils, Animation } from './core.js';
 
-/**
- * SmoothScroll class to handle smooth scrolling functionality
- */
+/* SmoothScroll class */
 class SmoothScroll {
     constructor(options = {}) {
         this.options = {
@@ -21,9 +19,7 @@ class SmoothScroll {
         CoreUtils.debug('SmoothScroll initialized');
     }
     
-    /**
-     * Initialize smooth scrolling for anchor links
-     */
+    /* Initialize smooth scrolling */
     initialize() {
         const anchorLinks = DOM.querySelectorAll('a[href^="#"]');
         
@@ -38,10 +34,7 @@ class SmoothScroll {
         CoreUtils.debug(`Initialized smooth scrolling for ${anchorLinks.length} anchor links`);
     }
     
-    /**
-     * Handle anchor link clicks
-     * @param {Event} event - Click event
-     */
+    /* Handle anchor link clicks */
     handleAnchorClick(event) {
         event.preventDefault();
         
@@ -56,11 +49,7 @@ class SmoothScroll {
         }
     }
     
-    /**
-     * Scroll to a specific element
-     * @param {HTMLElement} element - Target element
-     * @param {Object} customOptions - Custom scroll options
-     */
+    /* Scroll to element */
     scrollToElement(element, customOptions = {}) {
         if (!element) return;
         
@@ -69,7 +58,7 @@ class SmoothScroll {
             ...customOptions
         };
         
-        // Handle offset if specified
+        /* Handle offset if specified */
         if (scrollOptions.offset !== 0) {
             const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
             const offsetPosition = elementPosition - scrollOptions.offset;
@@ -83,9 +72,7 @@ class SmoothScroll {
         }
     }
     
-    /**
-     * Scroll to top of page
-     */
+    /* Scroll to top of page */
     scrollToTop() {
         window.scrollTo({
             top: 0,
@@ -93,9 +80,7 @@ class SmoothScroll {
         });
     }
     
-    /**
-     * Destroy smooth scroll instance
-     */
+    /* Destroy smooth scroll instance */
     destroy() {
         const anchorLinks = DOM.querySelectorAll('a[href^="#"]');
         
@@ -111,9 +96,7 @@ class SmoothScroll {
     }
 }
 
-/**
- * FormValidator class for form validation utilities
- */
+/* FormValidator class */
 class FormValidator {
     constructor() {
         this.validationRules = {
@@ -126,67 +109,37 @@ class FormValidator {
         CoreUtils.debug('FormValidator initialized');
     }
     
-    /**
-     * Validate email address
-     * @param {string} email - Email to validate
-     * @returns {boolean} - True if valid
-     */
+    /* Validate email address */
     validateEmail(email) {
         return this.validationRules.email.test(email);
     }
     
-    /**
-     * Validate phone number
-     * @param {string} phone - Phone number to validate
-     * @returns {boolean} - True if valid
-     */
+    /* Validate phone number */
     validatePhone(phone) {
         return this.validationRules.phone.test(phone);
     }
     
-    /**
-     * Validate URL
-     * @param {string} url - URL to validate
-     * @returns {boolean} - True if valid
-     */
+    /* Validate URL */
     validateUrl(url) {
         return this.validationRules.url.test(url);
     }
     
-    /**
-     * Validate required field
-     * @param {string} value - Value to validate
-     * @returns {boolean} - True if not empty
-     */
+    /* Validate required field */
     validateRequired(value) {
         return value && value.trim().length > 0;
     }
     
-    /**
-     * Validate minimum length
-     * @param {string} value - Value to validate
-     * @param {number} minLength - Minimum length required
-     * @returns {boolean} - True if meets minimum length
-     */
+    /* Validate minimum length */
     validateMinLength(value, minLength) {
         return value && value.length >= minLength;
     }
     
-    /**
-     * Validate maximum length
-     * @param {string} value - Value to validate
-     * @param {number} maxLength - Maximum length allowed
-     * @returns {boolean} - True if within maximum length
-     */
+    /* Validate maximum length */
     validateMaxLength(value, maxLength) {
         return !value || value.length <= maxLength;
     }
     
-    /**
-     * Validate form field based on type
-     * @param {HTMLElement} field - Form field element
-     * @returns {Object} - Validation result with isValid and message
-     */
+    /* Validate form field based on type */
     validateField(field) {
         const value = field.value;
         const type = field.type || field.dataset.validate;
@@ -194,7 +147,7 @@ class FormValidator {
         const minLength = field.getAttribute('minlength');
         const maxLength = field.getAttribute('maxlength');
         
-        // Check required
+        /* Check required */
         if (required && !this.validateRequired(value)) {
             return {
                 isValid: false,
@@ -202,12 +155,12 @@ class FormValidator {
             };
         }
         
-        // Skip other validations if field is empty and not required
+        /* Skip other validations if field is empty and not required */
         if (!value && !required) {
             return { isValid: true, message: '' };
         }
         
-        // Check length constraints
+        /* Check length constraints */
         if (minLength && !this.validateMinLength(value, parseInt(minLength))) {
             return {
                 isValid: false,
@@ -222,7 +175,7 @@ class FormValidator {
             };
         }
         
-        // Check type-specific validation
+        /* Check type-specific validation */
         switch (type) {
             case 'email':
                 if (!this.validateEmail(value)) {
@@ -262,11 +215,7 @@ class FormValidator {
         return { isValid: true, message: '' };
     }
     
-    /**
-     * Validate entire form
-     * @param {HTMLFormElement} form - Form element to validate
-     * @returns {Object} - Validation result with isValid and errors array
-     */
+    /* Validate entire form */
     validateForm(form) {
         const fields = form.querySelectorAll('input, textarea, select');
         const errors = [];
@@ -288,9 +237,7 @@ class FormValidator {
     }
 }
 
-/**
- * LocalStorage utility class
- */
+/* LocalStorage utility class */
 class StorageManager {
     constructor(prefix = 'app_') {
         this.prefix = prefix;
@@ -299,10 +246,7 @@ class StorageManager {
         CoreUtils.debug(`StorageManager initialized with prefix: ${prefix}`);
     }
     
-    /**
-     * Check if localStorage is available
-     * @returns {boolean} - True if available
-     */
+    /* Check if localStorage is available */
     checkAvailability() {
         try {
             const test = '__storage_test__';
@@ -315,21 +259,12 @@ class StorageManager {
         }
     }
     
-    /**
-     * Get prefixed key
-     * @param {string} key - Original key
-     * @returns {string} - Prefixed key
-     */
+    /* Get prefixed key */
     getPrefixedKey(key) {
         return `${this.prefix}${key}`;
     }
     
-    /**
-     * Set item in localStorage
-     * @param {string} key - Storage key
-     * @param {any} value - Value to store
-     * @returns {boolean} - True if successful
-     */
+    /* Set item in localStorage */
     setItem(key, value) {
         if (!this.isAvailable) return false;
         
@@ -343,12 +278,7 @@ class StorageManager {
         }
     }
     
-    /**
-     * Get item from localStorage
-     * @param {string} key - Storage key
-     * @param {any} defaultValue - Default value if not found
-     * @returns {any} - Retrieved value or default
-     */
+    /* Get item from localStorage */
     getItem(key, defaultValue = null) {
         if (!this.isAvailable) return defaultValue;
         
@@ -361,11 +291,7 @@ class StorageManager {
         }
     }
     
-    /**
-     * Remove item from localStorage
-     * @param {string} key - Storage key
-     * @returns {boolean} - True if successful
-     */
+    /* Remove item from localStorage */
     removeItem(key) {
         if (!this.isAvailable) return false;
         
@@ -378,10 +304,7 @@ class StorageManager {
         }
     }
     
-    /**
-     * Clear all items with prefix
-     * @returns {boolean} - True if successful
-     */
+    /* Clear all items with prefix */
     clear() {
         if (!this.isAvailable) return false;
         
@@ -400,11 +323,7 @@ class StorageManager {
     }
 }
 
-/**
- * Initialize utility modules
- * @param {Object} options - Configuration options
- * @returns {Object} - Initialized utility instances
- */
+/* Initialize utility modules */
 export function initializeUtils(options = {}) {
     const utils = {
         smoothScroll: null,
@@ -413,17 +332,17 @@ export function initializeUtils(options = {}) {
     };
     
     try {
-        // Initialize smooth scrolling
+        /* Initialize smooth scrolling */
         if (options.enableSmoothScroll !== false) {
             utils.smoothScroll = new SmoothScroll(options.smoothScrollOptions);
         }
         
-        // Initialize form validator
+        /* Initialize form validator */
         if (options.enableFormValidation !== false) {
             utils.formValidator = new FormValidator();
         }
         
-        // Initialize storage manager
+        /* Initialize storage manager */
         if (options.enableStorage !== false) {
             utils.storage = new StorageManager(options.storagePrefix);
         }
@@ -436,14 +355,14 @@ export function initializeUtils(options = {}) {
     }
 }
 
-// Export classes for direct usage
+/* Export classes for direct usage */
 export {
     SmoothScroll,
     FormValidator,
     StorageManager
 };
 
-// Export default for convenience
+/* Export default for convenience */
 export default {
     SmoothScroll,
     FormValidator,

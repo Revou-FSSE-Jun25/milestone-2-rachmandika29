@@ -1,11 +1,11 @@
-// ===== CONSTANTS =====
+/* Constants */
 export const CONSTANTS = {
-    // Breakpoints
+    /* Breakpoints */
     MOBILE_BREAKPOINT: 768,
-    // Animation durations
+    /* Animation durations */
     ANIMATION_DURATION: 300,
     
-    // Game settings
+    /* Game settings */
     GAME_SETTINGS: {
         NUMBER_GUESSING: {
             MIN_NUMBER: 1,
@@ -14,53 +14,47 @@ export const CONSTANTS = {
         }
     },
     
-    // UI Messages
+    /* UI Messages */
     MESSAGES: {
         SYSTEM_INITIALIZED: 'SYSTEM INITIALIZED. RANDOM NUMBER GENERATED.',
         GAME_OVER: 'GAME OVER',
         SUCCESS: 'SUCCESS'
     },
     
-    // CSS Classes
+    /* CSS Classes */
     CSS_CLASSES: {
         HIDDEN: 'hidden',
         FADE_IN: 'animate-fade-in',
         TERMINAL_GLOW: 'terminal-glow'
     },
     
-    // Aria attributes
+    /* Aria attributes */
     ARIA: {
         EXPANDED: 'aria-expanded'
     }
 };
 
-// ===== CONFIGURATION =====
+/* Configuration */
 export const CONFIG = {
     
-    // Animation settings
+    /* Animation settings */
     animations: {
         enabled: true,
         duration: CONSTANTS.ANIMATION_DURATION
     },
     
-    // Accessibility settings
+    /* Accessibility settings */
     accessibility: {
         enableKeyboardNavigation: true,
         enableScreenReaderSupport: true
     }
 };
 
-// ===== UTILITY FUNCTIONS =====
+/* Utility functions */
 
-/**
- * DOM utility functions
- */
+/* DOM utilities */
 export const DOM = {
-    /**
-     * Get element by ID with error handling
-     * @param {string} id - Element ID
-     * @returns {HTMLElement|null} - Element or null if not found
-     */
+    /* Get element by ID */
     getElementById(id) {
         const element = document.getElementById(id);
         if (!element && CONFIG.DEBUG) {
@@ -69,53 +63,31 @@ export const DOM = {
         return element;
     },
     
-    /**
-     * Get elements by selector with error handling
-     * @param {string} selector - CSS selector
-     * @param {HTMLElement} parent - Parent element (optional)
-     * @returns {NodeList} - NodeList of elements
-     */
+    /* Get elements by selector */
     querySelectorAll(selector, parent = document) {
         return parent.querySelectorAll(selector);
     },
     
-    /**
-     * Get single element by selector
-     * @param {string} selector - CSS selector
-     * @param {HTMLElement} parent - Parent element (optional)
-     * @returns {HTMLElement|null} - Element or null if not found
-     */
+    /* Get single element by selector */
     querySelector(selector, parent = document) {
         return parent.querySelector(selector);
     },
     
-    /**
-     * Add class to element
-     * @param {HTMLElement} element - Target element
-     * @param {string} className - Class name to add
-     */
+    /* Add class to element */
     addClass(element, className) {
         if (element && className) {
             element.classList.add(className);
         }
     },
     
-    /**
-     * Remove class from element
-     * @param {HTMLElement} element - Target element
-     * @param {string} className - Class name to remove
-     */
+    /* Remove class from element */
     removeClass(element, className) {
         if (element && className) {
             element.classList.remove(className);
         }
     },
     
-    /**
-     * Toggle class on element
-     * @param {HTMLElement} element - Target element
-     * @param {string} className - Class name to toggle
-     */
+    /* Toggle class on element */
     toggleClass(element, className) {
         if (element && className) {
             element.classList.toggle(className);
@@ -123,17 +95,9 @@ export const DOM = {
     }
 };
 
-/**
- * Event utility functions
- */
+/* Event utilities */
 export const Events = {
-    /**
-     * Add event listener with error handling
-     * @param {HTMLElement} element - Target element
-     * @param {string} event - Event type
-     * @param {Function} handler - Event handler
-     * @param {Object} options - Event options
-     */
+    /* Add event listener */
     addEventListener(element, event, handler, options = {}) {
         if (element && typeof handler === 'function') {
             element.addEventListener(event, handler, options);
@@ -142,12 +106,7 @@ export const Events = {
         }
     },
     
-    /**
-     * Remove event listener
-     * @param {HTMLElement} element - Target element
-     * @param {string} event - Event type
-     * @param {Function} handler - Event handler
-     */
+    /* Remove event listener */
     removeEventListener(element, event, handler) {
         if (element && typeof handler === 'function') {
             element.removeEventListener(event, handler);
@@ -155,26 +114,14 @@ export const Events = {
     }
 };
 
-/**
- * Utility helper functions
- */
+/* Utility helpers */
 export const Utils = {
-    /**
-     * Generate random number between min and max (inclusive)
-     * @param {number} min - Minimum value
-     * @param {number} max - Maximum value
-     * @returns {number} - Random number
-     */
+    /* Generate random number */
     randomNumber(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     },
     
-    /**
-     * Debounce function execution
-     * @param {Function} func - Function to debounce
-     * @param {number} wait - Wait time in milliseconds
-     * @returns {Function} - Debounced function
-     */
+    /* Debounce function */
     debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
@@ -187,38 +134,24 @@ export const Utils = {
         };
     },
     
-    /**
-     * Check if device is mobile based on window width
-     * @returns {boolean} - True if mobile
-     */
+    /* Check if mobile device */
     isMobile() {
         return window.innerWidth < CONSTANTS.MOBILE_BREAKPOINT;
     },
     
-    /**
-     * Log debug messages if debug mode is enabled
-     * @param {string} message - Debug message
-     * @param {any} data - Additional data to log
-     */
+    /* Debug logging */
     debug(message, data = null) {
         if (CONFIG.DEBUG) {
             console.log(`[DEBUG] ${message}`, data || '');
         }
     },
     
-    /**
-     * Log general messages
-     * @param {string} message - Message to log
-     */
+    /* Log general messages */
     logMessage(message) {
         console.log(`[GAME] ${message}`);
     },
     
-    /**
-     * Format number with appropriate suffixes (K, M, B, etc.)
-     * @param {number} num - Number to format
-     * @returns {string} - Formatted number string
-     */
+    /* Format number with appropriate suffixes (K, M, B, etc.) */
     formatNumber(num) {
         if (num < 1000) return num.toString();
         if (num < 1000000) return (num / 1000).toFixed(1) + 'K';
@@ -228,15 +161,9 @@ export const Utils = {
     }
 };
 
-/**
- * Animation utilities
- */
+/* Animation utilities */
 export const Animation = {
-    /**
-     * Smooth scroll to element
-     * @param {HTMLElement} element - Target element
-     * @param {Object} options - Scroll options
-     */
+    /* Smooth scroll to element */
     scrollToElement(element, options = {}) {
         if (element) {
             element.scrollIntoView({
@@ -247,10 +174,7 @@ export const Animation = {
         }
     },
     
-    /**
-     * Fade in element
-     * @param {HTMLElement} element - Target element
-     */
+    /* Fade in element */
     fadeIn(element) {
         if (element) {
             DOM.removeClass(element, CONSTANTS.CSS_CLASSES.HIDDEN);
@@ -258,10 +182,7 @@ export const Animation = {
         }
     },
     
-    /**
-     * Fade out element
-     * @param {HTMLElement} element - Target element
-     */
+    /* Fade out element */
     fadeOut(element) {
         if (element) {
             DOM.addClass(element, CONSTANTS.CSS_CLASSES.HIDDEN);
@@ -270,22 +191,20 @@ export const Animation = {
     }
 };
 
-// ===== INITIALIZATION =====
+/* Initialization */
 
-/**
- * Initialize core functionality
- */
+/* Initialize core functionality */
 export function initializeCore() {
     Utils.debug('Core module initialized');
     
-    // Set up global error handling
+    /* Global error handling */
     window.addEventListener('error', (event) => {
         if (CONFIG.DEBUG) {
             console.error('Global error:', event.error);
         }
     });
     
-    // Set up unhandled promise rejection handling
+    /* Unhandled promise rejection handling */
     window.addEventListener('unhandledrejection', (event) => {
         if (CONFIG.DEBUG) {
             console.error('Unhandled promise rejection:', event.reason);
@@ -293,7 +212,7 @@ export function initializeCore() {
     });
 }
 
-// Export default object for convenience
+/* Export default object */
 export default {
     CONSTANTS,
     CONFIG,
