@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Clicker | Mainkeun Game Studio</title>
+    <meta name="description" content="An addictive cookie clicker game with upgrades, achievements, and endless fun!">
+    <link rel="icon" type="image/png" href="../assets/images/icons/MainKeunBaseLogoTransparent.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script type="module" src="../js/main.js"></script>
+    <link rel="stylesheet" href="../css/main.css">
+    <script type="module" src="../js/games/clicker.js"></script>
+</head>
+<body class="font-['VT323'] bg-black text-terminal-green text-lg leading-relaxed overflow-x-hidden terminal-glow">
+    <!-- Navigation Header -->
+    <header class="bg-black shadow-lg sticky top-0 z-50 border-b-2 border-terminal-green">
+        <nav class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2 text-xl">
+                    <a href="../index.html" class="text-terminal-green hover:text-terminal-green-bright transition-all duration-300 terminal-glow-hover" aria-label="Home">
+                        [HOME]
+                    </a>
+                    <span class="text-terminal-green-dim">/</span>
+                    <a href="games.html" class="text-terminal-green hover:text-terminal-green-bright transition-all duration-300 terminal-glow-hover">GAMES</a>
+                    <span class="text-terminal-green-dim">/</span>
+                    <span class="text-terminal-green-bright terminal-glow">COOKIE_CLICKER</span>
+                </div>
+                <button id="resetGameBtn" class="bg-transparent border-2 border-terminal-green text-terminal-green px-4 py-2 text-lg font-normal transition-all duration-300 hover:bg-terminal-green-alpha-hover hover:text-terminal-green-bright terminal-glow-hover" aria-label="Reset Game">
+                    [RESET_GAME]
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Game Container -->
+    <main class="py-10 px-5 max-w-7xl mx-auto">
+        <div class="clicker-container grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Left Panel: Stats and Info -->
+            <aside class="lg:col-span-1 space-y-6">
+                <!-- Game Stats -->
+                <section class="stats-panel p-8 border-2 border-terminal-green bg-terminal-green-alpha relative" aria-labelledby="stats-title">
+                    <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[STATS]</div>
+                    <h2 id="stats-title" class="text-3xl mb-6 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">>> GAME STATISTICS</h2>
+                    <div class="space-y-4">
+                        <div class="stat-item text-xl">
+                            <span class="text-terminal-green">COOKIES:</span>
+                            <span id="totalScore" class="text-2xl font-bold text-terminal-green-bright ml-2 terminal-glow" aria-live="polite">0</span>
+                        </div>
+                        <div class="stat-item text-xl">
+                            <span class="text-terminal-green">PER_SECOND:</span>
+                            <span id="cookiesPerSecond" class="text-xl font-semibold text-terminal-green-bright ml-2 terminal-glow" aria-live="polite">0</span>
+                        </div>
+                        <div class="stat-item text-xl">
+                            <span class="text-terminal-green">TOTAL_CLICKS:</span>
+                            <span id="totalClicks" class="text-lg text-terminal-green-bright ml-2" aria-live="polite">0</span>
+                        </div>
+                        <div class="stat-item text-xl">
+                            <span class="text-terminal-green">CLICK_POWER:</span>
+                            <span id="clickPower" class="text-lg text-terminal-green-bright ml-2" aria-live="polite">1</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Achievements -->
+                <section class="achievements-panel p-8 border-2 border-terminal-green bg-terminal-green-alpha relative" aria-labelledby="achievements-title">
+                    <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[ACHIEVEMENTS]</div>
+                    <h2 id="achievements-title" class="text-3xl mb-6 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">>> UNLOCKED ACHIEVEMENTS</h2>
+                    <div id="achievementsList" class="space-y-3 max-h-64 overflow-y-auto text-lg" role="list">
+                        <!-- Achievements will be populated by JavaScript -->
+                    </div>
+                </section>
+            </aside>
+
+            <!-- Center Panel: Main Clicker -->
+            <section class="lg:col-span-1 flex flex-col items-center justify-center">
+                <div class="clicker-zone text-center p-8 border-2 border-terminal-green bg-terminal-green-alpha relative">
+                    <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[CLICKER]</div>
+                    <h1 class="text-4xl font-bold mb-8 text-terminal-green-bright terminal-glow-bright tracking-wider">>> COOKIE FACTORY</h1>
+                    
+                    <!-- Main Cookie Button -->
+                    <div class="cookie-container relative">
+                        <button id="mainClicker" 
+                                class="main-clicker w-64 h-64 bg-gradient-to-br from-cookie-primary to-cookie-secondary rounded-full shadow-2xl transform transition-all duration-150 hover:scale-105 active:scale-95 focus:outline-none border-4 border-terminal-green"
+                                aria-label="Click to get cookies"
+                                role="button"
+                                tabindex="0">
+                            <!-- Cookie SVG -->
+                            <svg class="w-48 h-48 mx-auto" viewBox="0 0 200 200" fill="none">
+                                <circle cx="100" cy="100" r="90" fill="#D2691E" stroke="#8B4513" stroke-width="4"/>
+                                <!-- Chocolate chips -->
+                                <circle cx="70" cy="80" r="8" fill="#654321"/>
+                                <circle cx="130" cy="70" r="6" fill="#654321"/>
+                                <circle cx="85" cy="120" r="7" fill="#654321"/>
+                                <circle cx="125" cy="110" r="5" fill="#654321"/>
+                                <circle cx="110" cy="140" r="6" fill="#654321"/>
+                                <circle cx="90" cy="150" r="4" fill="#654321"/>
+                                <circle cx="140" cy="130" r="7" fill="#654321"/>
+                            </svg>
+                        </button>
+                        
+                        <!-- Click Effect Container -->
+                        <div id="clickEffects" class="absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+                    </div>
+                    
+                    <!-- Click Instructions -->
+                    <p class="mt-6 text-terminal-green text-xl tracking-wider">[CLICK_TO_EARN_COOKIES]</p>
+                </div>
+            </section>
+
+            <!-- Right Panel: Upgrades Shop -->
+            <aside class="lg:col-span-1">
+                <section class="upgrades-shop p-8 border-2 border-terminal-green bg-terminal-green-alpha relative" aria-labelledby="shop-title">
+                    <div class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim">[SHOP]</div>
+                    <h2 id="shop-title" class="text-3xl mb-6 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider">>> UPGRADE STORE</h2>
+                    <div id="upgradesList" class="space-y-4 max-h-96 overflow-y-auto text-lg" role="list">
+                        <!-- Upgrades will be populated by JavaScript -->
+                    </div>
+                </section>
+            </aside>
+        </div>
+
+
+    </main>
+
+    <!-- Achievement Notification -->
+    <div id="achievementNotification" class="fixed top-4 right-4 bg-terminal-green-alpha border-2 border-terminal-green text-terminal-green-bright px-6 py-4 shadow-lg transform translate-x-full transition-transform duration-300 z-50" role="alert" aria-live="assertive">
+        <div class="flex items-center space-x-3">
+            <div class="text-2xl terminal-glow">[!]</div>
+            <div>
+                <div class="font-bold text-lg tracking-wider">>> ACHIEVEMENT_UNLOCKED!</div>
+                <div id="achievementText" class="text-sm text-terminal-green"></div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
