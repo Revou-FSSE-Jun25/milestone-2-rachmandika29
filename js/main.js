@@ -101,15 +101,9 @@ class Application {
         Utils.debug('Application initialized event dispatched');
     }
     
-    /* Get module instance */
-    getModule(moduleName) {
-        return this.modules[moduleName] || null;
-    }
+
     
-    /* Check if initialized */
-    isReady() {
-        return this.isInitialized;
-    }
+    
     
     /* Destroy application */
     destroy() {
@@ -137,11 +131,7 @@ class Application {
         Utils.debug('Application destroyed');
     }
     
-    /* Restart application */
-    async restart() {
-        this.destroy();
-        await this.initialize();
-    }
+
 }
 
 /* Global application instance */
@@ -187,15 +177,3 @@ window.addEventListener('beforeunload', () => {
 
 /* Module exports */
 export { Application, initializeApplication };
-
-/* App getter export */
-export function getApp() {
-    return app;
-}
-
-/* Default export */
-export default {
-    Application,
-    initializeApplication,
-    getApp
-};
