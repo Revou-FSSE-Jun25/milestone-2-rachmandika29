@@ -63,68 +63,148 @@ The landing page consists of 5 main pages:
 
 ## 🎯 Featured Games
 
-The website showcases JavaScript-based games including:
+The website showcases two fully-functional JavaScript-based games with integrated leaderboard systems:
 
-### 1. Clicker Game
-- **Description**: An addictive incremental clicking game
-- **Features**: 
-  - Click to earn points
-  - Upgrades and multipliers
-  - Achievement system
-  - Local storage for progress saving
+### 1. Cookie Clicker Game
+- **Description**: A fast-paced 30-second clicking challenge with terminal aesthetics
+- **Core Features**: 
+  - **Timed Gameplay**: 30-second rounds with countdown timer
+  - **Click Mechanics**: Responsive clicking with visual feedback and animations
+  - **Score System**: Real-time score tracking with formatted number display
+  - **Visual Effects**: Animated click effects with +1 score popups
+  - **Game States**: Start, active, and game over states with appropriate UI updates
+  - **Leaderboard Integration**: Automatic score submission and ranking system
+  - **Accessibility**: Keyboard support (Enter/Space) and screen reader friendly
 
 ### 2. Number Guessing Game
-- **Description**: A classic number guessing challenge
-- **Features**:
-  - Random number generation
-  - Hint system (higher/lower)
-  - Score tracking
-  - Difficulty levels
+- **Description**: A terminal-styled number guessing challenge with strategic gameplay
+- **Core Features**:
+  - **Smart Difficulty**: Random number generation (1-100) with strategic hints
+  - **Attempt System**: 10 attempts maximum with real-time tracking
+  - **Intelligent Feedback**: Higher/lower hints with terminal-style messaging
+  - **Performance Rating**: Efficiency scoring (Excellent/Good/Average/Poor)
+  - **Game Statistics**: Accuracy percentage and attempt tracking
+  - **Previous Guesses**: Visual history of all attempts with terminal styling
+  - **Leaderboard Integration**: Score submission based on attempts used (lower is better)
+  - **Terminal Aesthetics**: Complete VT320 terminal simulation with boot sequences
 
 ## 📁 Project Structure
 
 ```
 mainkeun-landing-page/
-├── index.html              # Home page
+├── index.html              # Home page with hero section and game previews
 ├── pages/
-│   ├── games.html         # Games showcase
-│   ├── leaderboards.html  # Leaderboards
-│   ├── about.html         # About us
-│   └── contact.html       # Contact page
+│   ├── games.html         # Games showcase page
+│   ├── about.html         # About us page
+│   ├── contact.html       # Contact page
+│   ├── clicker.html       # Cookie Clicker game page
+│   └── numguess.html      # Number Guessing game page
 ├── js/
-│   ├── main.js            # Main JavaScript
-│   ├── games/
-│   │   ├── clicker.js     # Clicker game logic
-│   │   └── guessing.js    # Number guessing game
-│   └── components/
-│       ├── navigation.js  # Navigation component
-│       └── leaderboard.js # Leaderboard functionality
-├── assets/
-│   ├── images/            # Images and graphics
-│   └── icons/             # Icon files
+│   ├── main.js            # Application entry point and module initialization
+│   ├── cores/
+│   │   ├── core.js        # Core utilities and configuration
+│   │   └── utils.js       # Utility functions and storage management
+│   ├── navigation/
+│   │   └── navigation.js  # Navigation component and mobile menu
+│   └── games/
+│       ├── clicker.js     # Cookie Clicker game logic and mechanics
+│       ├── guessing.js    # Number Guessing game logic and mechanics
+│       └── leaderboard.js # Leaderboard system and score management
+├── css/
+│   └── main.css           # Tailwind CSS and custom terminal styling
 └── README.md              # Project documentation
 ```
 
-## 🎮 Game Features
+## 🎮 Detailed Game Logic & Features
 
-### Clicker Game Features:
-- **Auto-clickers**: Automated clicking mechanisms
-- **Upgrades**: Various power-ups and multipliers
-- **Prestige System**: Reset progress for permanent bonuses
-- **Statistics**: Detailed game statistics and achievements
+### Cookie Clicker Game Logic:
+- **Game State Management**: Tracks cookies, time remaining, game active status, and game started status
+- **Timer System**: 30-second countdown with automatic game end when time expires
+- **Click Handling**: 
+  - Each click awards +1 cookie with immediate UI feedback
+  - Visual click effects with animated score popups (+1 display)
+  - Button scaling animation on click for tactile feedback
+  - Keyboard accessibility (Enter/Space keys)
+- **Score Tracking**: Real-time cookie count with formatted number display (K/M/B/T suffixes)
+- **Game Flow**: Start → Active (30s) → End → Leaderboard Submission → Reset
+- **UI Updates**: Dynamic status messages (CLICK_TO_START, GAME_ACTIVE, GAME_OVER)
+- **Leaderboard Integration**: Automatic score submission with player name input modal
 
-### Number Guessing Game Features:
-- **Multiple Difficulty Levels**: Easy (1-10), Medium (1-50), Hard (1-100)
-- **Hint System**: Smart hints to guide players
-- **Timer Mode**: Time-based challenges
-- **High Score Tracking**: Personal best records
+### Number Guessing Game Logic:
+- **Game Initialization**: Random target number generation (1-100) with 10 maximum attempts
+- **Input Validation**: 
+  - Range checking (1-100)
+  - Duplicate guess prevention
+  - Invalid input handling with terminal-style error messages
+- **Feedback System**: 
+  - Intelligent hints ("ANALYSIS: X < TARGET_NUMBER. INCREASE VALUE.")
+  - Terminal-styled messaging with color coding (green/yellow/red)
+  - Success/failure state management
+- **Statistics Tracking**: 
+  - Attempts remaining counter
+  - Total guesses made
+  - Accuracy percentage calculation
+  - Previous guesses history with terminal styling
+- **Performance Rating**: Efficiency scoring based on attempts used (≤3: Excellent, ≤5: Good, ≤7: Average, >7: Poor)
+- **Game Flow**: Initialize → Guess Loop → Win/Lose → Leaderboard (if won) → Reset
+- **Leaderboard Integration**: Score submission based on attempts used (lower attempts = better score)
 
-## 📊 Leaderboard System
+## 📊 Advanced Leaderboard System
 
-- **Global Leaderboards**: Cross-game rankings
-- **Game-Specific Rankings**: Individual game leaderboards
-- **Real-time Updates**: Live score updates
-- **Player Profiles**: Basic player information and statistics
+### Core Features:
+- **Game-Specific Rankings**: Separate leaderboards for Cookie Clicker and Number Guessing
+- **Local Storage**: Persistent score storage using browser localStorage with "leaderboard_" prefix
+- **Smart Scoring**: 
+  - Cookie Clicker: Higher scores ranked first (descending order)
+  - Number Guessing: Lower attempts ranked first (ascending order)
+- **Top 10 Tracking**: Maximum 10 entries per game with automatic pruning
+- **Score Validation**: New record detection and qualification checking
+
+### User Interface:
+- **Score Submission Modal**: Post-game modal with player name input and skip option
+- **Formatted Display**: 
+  - Medal system (🥇🥈🥉) for top 3 positions
+  - Formatted scores ("X cookies" vs "X attempts")
+  - Timestamp display with date and time
+  - Terminal-styled presentation matching game aesthetics
+- **Management Features**: 
+  - Clear leaderboard functionality with confirmation dialog
+  - Real-time leaderboard updates after score submission
+  - Anonymous player support (default "Anonymous" name)
+
+### Technical Implementation:
+- **Modular Design**: Standalone leaderboard class with game integration
+- **Event-Driven**: Custom events for score submission and updates
+- **Storage Management**: Robust localStorage handling with error recovery
+- **Cross-Game Compatibility**: Unified system supporting multiple game types
+
+## 🏗️ Application Architecture
+
+### Module System:
+- **Core Architecture**: ES6 module-based application with centralized initialization
+- **Application Class**: Main application controller managing all game modules
+- **Module Management**: 
+  - Navigation system with mobile menu support
+  - Utility functions with smooth scrolling and form validation
+  - Leaderboard system with cross-game compatibility
+  - Individual game instances (Cookie Clicker & Number Guessing)
+
+### Initialization Flow:
+1. **DOM Ready**: Application starts when DOM content is loaded
+2. **Core Initialization**: Core utilities and configuration setup
+3. **Navigation Setup**: Mobile and desktop navigation initialization
+4. **Utilities Loading**: Smooth scroll, form validation, and storage management
+5. **Leaderboard System**: Centralized scoring system initialization
+6. **Game Loading**: Conditional game initialization based on current page
+7. **Global Access**: Module instances available globally for cross-component communication
+
+### Key Features:
+- **Modular Design**: Each component is self-contained with clear interfaces
+- **Error Handling**: Comprehensive error catching and logging throughout
+- **Debug Support**: Built-in debug mode with detailed logging
+- **Event System**: Custom events for inter-module communication
+- **Cleanup Management**: Proper resource cleanup on page unload
+- **Page Detection**: Smart initialization based on current page context
 
 ## 🎨 Styling Guidelines
 
