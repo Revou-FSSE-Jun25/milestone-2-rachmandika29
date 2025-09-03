@@ -125,7 +125,6 @@ mainkeun-landing-page/
   - Visual click effects with animated score popups (+1 display)
   - Button scaling animation on click for tactile feedback
   - Keyboard accessibility (Enter/Space keys)
-- **Score Tracking**: Real-time cookie count with formatted number display (K/M/B/T suffixes)
 - **Game Flow**: Start → Active (30s) → End → Leaderboard Submission → Reset
 - **UI Updates**: Dynamic status messages (CLICK_TO_START, GAME_ACTIVE, GAME_OVER)
 - **Leaderboard Integration**: Automatic score submission with player name input modal
