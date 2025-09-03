@@ -1,85 +1,196 @@
-// Hamburger Menu Navigation Button
-document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const hamburgerLines = mobileMenuButton.querySelectorAll('span');
-    
-    let isMenuOpen = false;
-    
-    // Toggle mobile menu function
-    function toggleMobileMenu() {
-        isMenuOpen = !isMenuOpen;
+/**
+ * Main.js - Application entry point
+ * This is the main entry point that imports and initializes all modules
+ * in a clean, organized, and modular way.
+ */
+
+// Import core functionality
+import { initializeCore, CONFIG, Utils } from './cores/core.js';
+
+// Import feature modules
+import { initializeNavigation } from './navigation/navigation.js';
+import { initializeUtils } from './cores/utils.js';
+
+/**
+ * Application class to manage the entire application lifecycle
+ */
+class Application {
+    constructor() {
+        this.modules = {
+            navigation: null,
+            utils: null
+        };
         
-        if (isMenuOpen) {
-            // Show mobile menu
-            mobileMenu.classList.remove('hidden');
-            mobileMenu.classList.add('animate-fade-in');
+        this.isInitialized = false;
+        
+        // Bind methods
+        this.initialize = this.initialize.bind(this);
+        this.destroy = this.destroy.bind(this);
+        
+        Utils.debug('Application instance created');
+    }
+    
+    /**
+     * Initialize the application and all its modules
+     */
+    async initialize() {
+        try {
+            Utils.debug('Initializing application...');
             
-            // Animate hamburger to X
-            hamburgerLines[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-            hamburgerLines[1].style.opacity = '0';
-            hamburgerLines[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            // Initialize core functionality first
+            initializeCore();
             
-            // Add aria-expanded for accessibility
-            mobileMenuButton.setAttribute('aria-expanded', 'true');
-        } else {
-            // Hide mobile menu
-            mobileMenu.classList.add('hidden');
-            mobileMenu.classList.remove('animate-fade-in');
+            // Initialize navigation module
+            this.modules.navigation = initializeNavigation();
             
-            // Reset hamburger lines
-            hamburgerLines[0].style.transform = 'none';
-            hamburgerLines[1].style.opacity = '1';
-            hamburgerLines[2].style.transform = 'none';
+            // Initialize utility modules
+            this.modules.utils = initializeUtils({
+                enableSmoothScroll: true,
+                enableFormValidation: true,
+                enableStorage: true,
+                storagePrefix: 'mainkeun_',
+                smoothScrollOptions: {
+                    behavior: 'smooth',
+                    block: 'start',
+                    offset: 80 // Account for sticky header
+                }
+            });
             
-            // Update aria-expanded for accessibility
-            mobileMenuButton.setAttribute('aria-expanded', 'false');
+            this.isInitialized = true;
+            Utils.debug('Application initialized successfully');
+            
+            // Dispatch custom event for other scripts that might need to know
+            this.dispatchInitializedEvent();
+            
+        } catch (error) {
+            console.error('Failed to initialize application:', error);
+            this.isInitialized = false;
         }
     }
     
-    // Add click event listener to mobile menu button
-    mobileMenuButton.addEventListener('click', toggleMobileMenu);
-    
-    // Close mobile menu when clicking on menu links
-    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-    mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (isMenuOpen) {
-                toggleMobileMenu();
+    /**
+     * Dispatch application initialized event
+     */
+    dispatchInitializedEvent() {
+        const event = new CustomEvent('applicationInitialized', {
+            detail: {
+                modules: this.modules,
+                timestamp: Date.now()
             }
         });
-    });
-    
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-        const isClickInsideNav = mobileMenuButton.contains(event.target) || mobileMenu.contains(event.target);
         
-        if (!isClickInsideNav && isMenuOpen) {
-            toggleMobileMenu();
-        }
-    });
+        document.dispatchEvent(event);
+        Utils.debug('Application initialized event dispatched');
+    }
     
-    // Handle window resize - close mobile menu if window becomes large
-    window.addEventListener('resize', function() {
-        if (window.innerWidth >= 768 && isMenuOpen) { // 768px is md breakpoint
-            toggleMobileMenu();
-        }
-    });
+    /**
+     * Get a specific module instance
+     * @param {string} moduleName - Name of the module
+     * @returns {Object|null} - Module instance or null
+     */
+    getModule(moduleName) {
+        return this.modules[moduleName] || null;
+    }
     
-    // Initialize aria-expanded attribute
-    mobileMenuButton.setAttribute('aria-expanded', 'false');
+    /**
+     * Check if application is initialized
+     * @returns {boolean} - True if initialized
+     */
+    isReady() {
+        return this.isInitialized;
+    }
+    
+    /**
+     * Destroy the application and clean up all modules
+     */
+    destroy() {
+        Utils.debug('Destroying application...');
+        
+        // Destroy navigation module
+        if (this.modules.navigation && typeof this.modules.navigation.destroy === 'function') {
+            this.modules.navigation.destroy();
+        }
+        
+        // Destroy utility modules
+        if (this.modules.utils) {
+            if (this.modules.utils.smoothScroll && typeof this.modules.utils.smoothScroll.destroy === 'function') {
+                this.modules.utils.smoothScroll.destroy();
+            }
+        }
+        
+        // Reset modules
+        this.modules = {
+            navigation: null,
+            utils: null
+        };
+        
+        this.isInitialized = false;
+        Utils.debug('Application destroyed');
+    }
+    
+    /**
+     * Restart the application
+     */
+    async restart() {
+        this.destroy();
+        await this.initialize();
+    }
+}
+
+// Create global application instance
+let app = null;
+
+/**
+ * Initialize application when DOM is ready
+ */
+function initializeApplication() {
+    if (app) {
+        Utils.debug('Application already exists, skipping initialization');
+        return app;
+    }
+    
+    app = new Application();
+    app.initialize();
+    
+    // Make app globally accessible for debugging (only in debug mode)
+    if (CONFIG.DEBUG) {
+        window.MainkeunApp = app;
+    }
+    
+    return app;
+}
+
+/**
+ * DOM Content Loaded event handler
+ */
+document.addEventListener('DOMContentLoaded', initializeApplication);
+
+// Handle page visibility changes to potentially pause/resume functionality
+document.addEventListener('visibilitychange', () => {
+    if (app) {
+        Utils.debug(`Page visibility changed: ${document.hidden ? 'hidden' : 'visible'}`);
+    }
 });
 
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
+// Handle before unload to clean up if needed
+window.addEventListener('beforeunload', () => {
+    if (app) {
+        Utils.debug('Page unloading, cleaning up...');
+        // Perform any necessary cleanup here
+    }
 });
+
+// Export for potential use by other scripts
+export { Application, initializeApplication };
+
+// Export app instance getter
+export function getApp() {
+    return app;
+}
+
+// Export default for convenience
+export default {
+    Application,
+    initializeApplication,
+    getApp
+};
