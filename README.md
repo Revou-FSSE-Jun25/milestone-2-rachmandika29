@@ -203,7 +203,7 @@ mainkeun-landing-page/
 - **Error Handling**: Comprehensive error catching and logging throughout
 - **Debug Support**: Built-in debug mode with detailed logging
 - **Event System**: Custom events for inter-module communication
-- **Cleanup Management**: Proper resource cleanup on page unload
+- **Cleanup Management**: Proper resource cleanup on page unload via destroy method
 - **Page Detection**: Smart initialization based on current page context
 - **Optimized Core**: Streamlined core.js with only essential utilities and configurations
 - **Direct DOM Manipulation**: Replaced animation utilities with direct DOM operations for better performance
