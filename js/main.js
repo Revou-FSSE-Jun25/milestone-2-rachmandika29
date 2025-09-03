@@ -12,6 +12,7 @@ import { initializeUtils } from "./cores/utils.js";
 import { initializeLeaderboard } from "./games/leaderboard.js";
 import { initializeCookieClicker } from "./games/clicker.js";
 import { initializeNumberGuessingGame } from "./games/guessing.js";
+import { initializeRockPaperScissorsGame } from "./games/rockpaperscissor.js";
 
 /* Application class */
 class Application {
@@ -22,6 +23,7 @@ class Application {
       leaderboard: null,
       cookieClicker: null,
       numberGuessing: null,
+      rockPaperScissors: null,
     };
 
     this.isInitialized = false;
@@ -72,11 +74,16 @@ class Application {
         enableDebug: DEBUG_ENABLED,
       });
 
+      this.modules.rockPaperScissors = initializeRockPaperScissorsGame({
+        enableDebug: DEBUG_ENABLED,
+      });
+
       /* Global module access */
       if (typeof window !== "undefined") {
         window.gameLeaderboard = this.modules.leaderboard;
         window.cookieClickerGame = this.modules.cookieClicker;
         window.numberGuessingGame = this.modules.numberGuessing;
+        window.rockPaperScissorsGame = this.modules.rockPaperScissors;
       }
 
       this.isInitialized = true;

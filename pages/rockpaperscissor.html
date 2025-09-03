@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors | RevoFun Game Studio</title>
+    <meta
+      name="description"
+      content="Classic Rock Paper Scissors game with score tracking and leaderboard!"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script type="module" src="../js/main.js"></script>
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+  <body
+    class="font-['VT323'] bg-black text-terminal-green text-lg leading-relaxed overflow-x-hidden terminal-glow"
+  >
+    <main class="py-4 md:py-10 px-3 md:px-5 max-w-7xl mx-auto">
+      <div
+        class="rps-container grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-6 h-auto lg:h-[calc(100vh-12rem)] min-h-[500px] lg:min-h-[600px]"
+      >
+        <aside class="lg:col-span-1 space-y-3 md:space-y-6">
+          <section
+            class="stats-panel p-3 md:p-6 border-2 border-terminal-green bg-terminal-green-alpha relative"
+            aria-labelledby="stats-title"
+          >
+            <div
+              class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim"
+            >
+              [STATS]
+            </div>
+            <h2
+              id="stats-title"
+              class="text-xl md:text-2xl mb-2 md:mb-4 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider"
+            >
+              >> GAME STATISTICS
+            </h2>
+            <div class="space-y-2 md:space-y-3">
+              <div class="stat-item text-lg">
+                <span class="text-terminal-green">PLAYER_SCORE:</span>
+                <span
+                  id="playerScore"
+                  class="text-xl font-bold text-terminal-green-bright ml-2 terminal-glow"
+                  aria-live="polite"
+                  >0</span
+                >
+              </div>
+              <div class="stat-item text-lg">
+                <span class="text-terminal-green">COMPUTER_SCORE:</span>
+                <span
+                  id="computerScore"
+                  class="text-xl font-bold text-terminal-green-bright ml-2 terminal-glow"
+                  aria-live="polite"
+                  >0</span
+                >
+                >
+              </div>
+              <div class="stat-item text-lg">
+                <span class="text-terminal-green">TOTAL_GAMES:</span>
+                <span
+                  id="totalGames"
+                  class="text-lg font-semibold text-terminal-green-bright ml-2 terminal-glow"
+                  aria-live="polite"
+                  >0</span
+                >
+                >
+              </div>
+              <div class="stat-item text-lg">
+                <span class="text-terminal-green">WIN_RATE:</span>
+                <span
+                  id="winRate"
+                  class="text-lg font-semibold text-terminal-green-bright ml-2 terminal-glow"
+                  aria-live="polite"
+                  >0%</span
+                >
+                >
+              </div>
+            </div>
+          </section>
+
+          <section
+            class="game-controls p-3 md:p-6 border-2 border-terminal-green bg-terminal-green-alpha relative"
+            aria-labelledby="controls-title"
+          >
+            <div
+              class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim"
+            >
+              [CONTROLS]
+            </div>
+            <h2
+              id="controls-title"
+              class="text-xl md:text-2xl mb-2 md:mb-4 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider"
+            >
+              >> GAME CONTROLS
+            </h2>
+
+            <div class="space-y-3 md:space-y-4">
+              <div class="text-center">
+                <div class="text-sm text-terminal-green-dim mb-2">
+                  GAME RESULT
+                </div>
+                <div
+                  id="gameResult"
+                  class="text-xl font-bold text-gray-600 dark:text-gray-300 terminal-glow"
+                >
+                  Choose your move!
+                </div>
+              </div>
+
+              <button
+                id="resetBtn"
+                class="w-full bg-transparent border-2 border-terminal-green text-terminal-green px-4 py-3 md:py-2 text-lg font-normal transition-all duration-300 hover:bg-terminal-green-alpha-hover hover:text-terminal-green-bright terminal-glow-hover touch-manipulation"
+                aria-label="Reset Game"
+              >
+                [RESET_GAME]
+              </button>
+            </div>
+          </section>
+
+          <section
+            class="game-history p-3 md:p-6 border-2 border-terminal-green bg-terminal-green-alpha relative"
+            aria-labelledby="history-title"
+          >
+            <div
+              class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim"
+            >
+              [HISTORY]
+            </div>
+            <h2
+              id="history-title"
+              class="text-xl md:text-2xl mb-2 md:mb-4 text-terminal-green-bright terminal-glow-bright font-normal tracking-wider"
+            >
+              >> RECENT GAMES
+            </h2>
+            <div
+              id="gameHistory"
+              class="space-y-2 max-h-32 md:max-h-48 overflow-y-auto text-base md:text-lg"
+              role="list"
+            >
+              <!-- Game history will be populated here -->
+            </div>
+          </section>
+        </aside>
+
+        <section
+          class="lg:col-span-1 flex flex-col items-center justify-center order-first lg:order-none"
+        >
+          <div
+            class="game-zone text-center p-4 md:p-6 border-2 border-terminal-green bg-terminal-green-alpha relative w-full h-full flex flex-col justify-center min-h-[400px] md:min-h-[500px]"
+          >
+            <div
+              class="absolute -top-3 left-5 bg-black px-2 text-sm text-terminal-green-dim"
+            >
+              [BATTLE_ZONE]
+            </div>
+            <h1
+              class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-terminal-green-bright terminal-glow-bright tracking-wider"
+            >
+              >> ROCK PAPER SCISSORS
+            </h1>
+
+            <!-- Battle Display -->
+            <div class="battle-display mb-6 md:mb-8">
+              <div class="flex justify-between items-center mb-4">
+                <div class="text-center">
+                  <div class="text-sm text-terminal-green-dim mb-2">YOU</div>
+                  <div
+                    id="playerChoice"
+                    class="text-2xl md:text-3xl font-bold text-terminal-green-bright terminal-glow"
+                  >
+                    ❓ CHOOSE
+                  </div>
+                </div>
+                <div class="text-2xl md:text-3xl text-terminal-green-bright">
+                  VS
+                </div>
+                <div class="text-center">
+                  <div class="text-sm text-terminal-green-dim mb-2">
+                    COMPUTER
+                  </div>
+                  <div
+                    id="computerChoice"
+                    class="text-2xl md:text-3xl font-bold text-terminal-green-bright terminal-glow"
+                  >
+                    ❓ WAITING
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Game Buttons -->
+            <div class="game-buttons space-y-3 md:space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
+                <button
+                  id="rockBtn"
+                  class="choice-btn w-full py-4 md:py-6 px-4 bg-terminal-green text-black font-bold text-lg md:text-xl tracking-wider hover:bg-terminal-green-bright transition-all duration-200 border-2 border-terminal-green-bright touch-manipulation transform hover:scale-105 active:scale-95"
+                  aria-label="Choose Rock"
+                >
+                  🪨<br />ROCK
+                </button>
+                <button
+                  id="paperBtn"
+                  class="choice-btn w-full py-4 md:py-6 px-4 bg-terminal-green text-black font-bold text-lg md:text-xl tracking-wider hover:bg-terminal-green-bright transition-all duration-200 border-2 border-terminal-green-bright touch-manipulation transform hover:scale-105 active:scale-95"
+                  aria-label="Choose Paper"
+                >
+                  📄<br />PAPER
+                </button>
+                <button
+                  id="scissorsBtn"
+                  class="choice-btn w-full py-4 md:py-6 px-4 bg-terminal-green text-black font-bold text-lg md:text-xl tracking-wider hover:bg-terminal-green-bright transition-all duration-200 border-2 border-terminal-green-bright touch-manipulation transform hover:scale-105 active:scale-95"
+                  aria-label="Choose Scissors"
+                >
+                  ✂️<br />SCISSORS
+                </button>
+              </div>
+            </div>
+
+            <p
+              class="mt-4 md:mt-6 text-terminal-green text-base md:text-lg tracking-wider px-2"
+            >
+              [CHOOSE_YOUR_WEAPON_AND_BATTLE_THE_COMPUTER]
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
