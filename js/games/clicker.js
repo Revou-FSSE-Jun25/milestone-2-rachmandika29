@@ -1,6 +1,6 @@
 /* Cookie Clicker Game */
 
-import { Utils } from "../cores/core.js";
+import { DOM, Utils } from "../cores/core.js";
 import { initializeNavigation } from "../navigation/navigation.js";
 
 class CookieClickerGame {
@@ -43,13 +43,13 @@ class CookieClickerGame {
   /* Cache DOM elements */
   cacheElements() {
     this.elements = {
-      mainClicker: document.getElementById("mainClicker"),
-      totalScore: document.getElementById("totalScore"),
-      timeRemaining: document.getElementById("timeRemaining"),
-      gameStatus: document.getElementById("gameStatus"),
-      startButton: document.getElementById("startButton"),
-      resetButton: document.getElementById("resetGameBtn"),
-      clickEffects: document.getElementById("clickEffects"),
+      mainClicker: DOM.getElementById("mainClicker"),
+      totalScore: DOM.getElementById("totalScore"),
+      timeRemaining: DOM.getElementById("timeRemaining"),
+      gameStatus: DOM.getElementById("gameStatus"),
+      startButton: DOM.getElementById("startButton"),
+      resetButton: DOM.getElementById("resetGameBtn"),
+      clickEffects: DOM.getElementById("clickEffects"),
     };
   }
 
@@ -293,7 +293,7 @@ function initializeCookieClicker(options = {}) {
   };
 
   /* Check if on clicker page */
-  const mainClicker = document.getElementById("mainClicker");
+  const mainClicker = DOM.getElementById("mainClicker");
   if (!mainClicker) {
     return null;
   }
