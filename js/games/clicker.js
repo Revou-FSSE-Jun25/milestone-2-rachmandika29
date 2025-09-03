@@ -1,5 +1,4 @@
-// Cookie Clicker Game - Timer-based Challenge
-// Modular implementation with 1-minute timer and leaderboard integration
+/* Cookie Clicker Game */
 
 import { Utils } from "../cores/core.js";
 import { initializeNavigation } from "../navigation/navigation.js";
@@ -18,21 +17,21 @@ class CookieClickerGame {
     this.autoSaveInterval = null;
   }
 
-  // Initialize the game
+  /* Initialize game */
   async init() {
     try {
       Utils.logMessage("Initializing Cookie Clicker Game...");
 
-      // Initialize navigation
+      /* Initialize navigation */
       await initializeNavigation();
 
-      // Cache DOM elements
+      /* Cache elements */
       this.cacheElements();
 
-      // Set up event listeners
+      /* Setup listeners */
       this.setupEventListeners();
 
-      // Initial UI update
+      /* Initial UI update */
       this.updateUI();
       this.renderLeaderboard();
 
@@ -42,7 +41,7 @@ class CookieClickerGame {
     }
   }
 
-  // Cache DOM elements for performance
+  /* Cache DOM elements */
   cacheElements() {
     this.elements = {
       mainClicker: document.getElementById("mainClicker"),
@@ -55,9 +54,9 @@ class CookieClickerGame {
     };
   }
 
-  // Set up event listeners
+  /* Setup event listeners */
   setupEventListeners() {
-    // Main clicker
+    /* Main clicker */
     this.elements.mainClicker.addEventListener("click", (e) =>
       this.handleClick(e)
     );
@@ -68,7 +67,7 @@ class CookieClickerGame {
       }
     });
 
-    // Start button
+    /* Start button */
     if (this.elements.startButton) {
       this.elements.startButton.addEventListener("click", () =>
         this.startGame()
